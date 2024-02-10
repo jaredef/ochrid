@@ -1,0 +1,51 @@
+main h1 {
+    font-family: var(--font-merriweather);
+    font-style: italic;
+    text-align: center;
+    color: crimson !important;
+}
+main h2 {
+    font-family: var(--font-ptSerif);
+    text-align: center;
+    border: none;
+}
+main p {
+    font-family: var(--font-ptSerif);
+    font-size: 1.2rem;
+    line-height: 2.2rem !important;
+}
+.title-imprint {
+    margin: auto;
+}
+
+.four-dot {
+    display: inline;
+    margin-right: .3rem;
+}
+
+blockquote {
+    border: none;
+}
+
+ol li::marker {
+    font-family: var(--font-ptSerif);
+    font-weight: bolder;
+}
+
+.nextra-scrollbar ul li a {
+    font-family: var(--font-ptSerif);
+}
+
+.nextra-sidebar-container {
+    min-width: 20rem;
+}
+
+.calendar-date {
+    color: crimson;
+    border: 1px solid crimson;
+    border-radius: .2rem;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: .2rem .6rem .2rem .6rem;
+    margin-left: 3rem;
+}
