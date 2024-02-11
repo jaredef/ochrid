@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 const ToggleSwitch = ({ label, onClick }) => {
     return (
-        <div className="container">
+        <div className="toggle-container">
             {label}{" "}
             <div className="toggle-switch">
                 <input type="checkbox" className="checkbox"

@@ -1,8 +1,26 @@
+.nextra-banner-container {
+    background-color: white !important;
+    color: black !important;
+    margin: .25rem 0 .25rem 0;
+}
+.nextra-banner-container img{
+    margin-right: .5rem;
+}
+.nextra-nav-container-blur {
+    background-color: #9d0000 !important;
+}
+input{
+    --tw-bg-opacity: .6 !important;
+    background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
+}
+input::placeholder {
+    color: rgb(0, 0, 0) !important;
+}
 main h1 {
     font-family: var(--font-merriweather);
     font-style: italic;
     text-align: center;
-    color: crimson !important;
+    color: #9d0000 !important;
 }
 main h2 {
     font-family: var(--font-ptSerif);
@@ -36,13 +54,13 @@ ol li::marker {
     font-family: var(--font-ptSerif);
 }
 .nextra-scrollbar ul li a:current {
-    color: crimson;
+    color: #9d0000;
 }
 .nextra-sidebar-container {
-    min-width: 20rem;
+    min-width: 21rem;
 }
 .nextra-sidebar-container li {
-    min-height: 22rem;
+    min-height: 25rem;
 }
 
 .calendar-wrapper {
@@ -52,22 +70,11 @@ ol li::marker {
     gap: 1rem .5rem;
 }
 
-#date-os,
-#date-ns {
-    flex: 1; /* Each button takes up half of the available space */
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .calendar-date {
-    color: crimson;
-    border: 1px solid crimson;
+    color: #9d0000;
+    border: 1px solid #9d0000;
     border-radius: .2rem;
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-family: Arial, Helvetica, sans-serif;
     padding: .2rem .6rem .2rem .6rem;
     min-width: 14.2rem;
@@ -111,7 +118,7 @@ ol li::marker {
     box-sizing: border-box;
     }
     .inner:before {
-    content: "ON";
+    content: "+13";
     padding-left: 10px;
     background-color: rgb(0, 112, 37);
     color: #fff;
@@ -143,3 +150,17 @@ ol li::marker {
     right: 0px;
     }
     
+:is(html[class~=dark] .nextra-banner-container) {
+    --tw-bg-opacity: .2 !important;
+    background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
+}
+:is(html[class~=dark] .nextra-banner-container a ) {
+    color: white;
+}
+:is(html[class~=dark] .nextra-banner-container a img ) {
+    display: none !important;
+}
+:is(html[class~=dark] input) {
+    --tw-bg-opacity: .2 !important;
+    background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
+}
