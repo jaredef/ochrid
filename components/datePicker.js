@@ -1,18 +1,61 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { eachDayOfInterval, startOfDay, subDays, format } from 'date-fns';
-import { useHistory } from "react-router-dom";
+import { useRouter } from 'next/router';
+
+const ToggleSwitch = ({ label, onClick }) => {
+    return (
+        <div className="container">
+            {label}{" "}
+            <div className="toggle-switch">
+                <input type="checkbox" className="checkbox"
+                    name={label} id={label} onClick={onClick} />
+                <label className="label" htmlFor={label}>
+                    <span className="inner" />
+                    <span className="switch" />
+                </label>
+            </div>
+        </div>
+    );
+};
 
 const Calendar = () => {
     const [startDate, setStartDate] = useState(subDays(new Date(), 13));
-    const history = useHistory();
+    const [isNSActive, setIsNSActive] = useState(false); // State to track if "N.S" is active
+    const router = useRouter();
+
+    useEffect(() => {
+        // Set the default active state to "O.S" button when the component mounts
+        handleOSButtonClick();
+    }, []);
 
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
         <button className="calendar-date" onClick={onClick} ref={ref}>
             {value}
         </button>
     ));
+
+    const handleToggleSwitchClick = () => {
+        setIsNSActive(!isNSActive); // Toggle the state of "N.S" active
+        if (!isNSActive) {
+            handleNSButtonClick();
+        } else {
+            handleOSButtonClick();
+        }
+    };
+
+    const handleNSButtonClick = () => {
+        setStartDate(new Date());
+        const formattedDate = format(new Date(), 'MMMM/do').toLowerCase();
+        router.push(`/${formattedDate}`);
+    };
+
+    const handleOSButtonClick = () => {
+        setStartDate(subDays(new Date(), 13));
+        const formattedDate = format(subDays(new Date(), 13), 'MMMM/do').toLowerCase();
+        router.push(`/${formattedDate}`);
+    };
 
     const year2024Dates = eachDayOfInterval({
         start: new Date(2024, 0, 1),
@@ -38,17 +81,20 @@ const Calendar = () => {
     const handleDateChange = (date) => {
         setStartDate(date);
         const formattedDate = format(date, 'MMMM/do').toLowerCase();
-        history.push(`/${formattedDate}`);
+        router.push(`/${formattedDate}`);
     };
 
     return (
-        <DatePicker
-            holidays={holidays2024}
-            includeDates={year2024Dates}
-            selected={startDate}
-            onChange={handleDateChange}
-            customInput={<ExampleCustomInput />}
-        />
+        <div className="calendar-wrapper">
+            <ToggleSwitch label=" " onClick={handleToggleSwitchClick} />
+            <DatePicker
+                holidays={holidays2024}
+                includeDates={year2024Dates}
+                selected={startDate}
+                onChange={handleDateChange}
+                customInput={<ExampleCustomInput />}
+            />
+        </div>
     );
 };
 

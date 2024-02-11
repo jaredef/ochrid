@@ -5,6 +5,8 @@ export default {
     search : {
         placeholder: "Search the Prologue"
     },
+    primaryHue: 360,
+    primarySaturation: 100,
     editLink: {
         component: null
     },
@@ -20,5 +22,6 @@ export default {
             }
             return <>{title}</>
         }
-    }
+    },
+    gitTimestamp: null
   };

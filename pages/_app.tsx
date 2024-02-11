@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { PT_Serif, Merriweather } from 'next/font/google';
 import './global.css';
+import { useRouter } from 'next/router';
 
 // If loading a variable font, you don't need to specify the font weight
 const merriweather = Merriweather({
@@ -21,21 +22,13 @@ const ptSerif = PT_Serif({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // Conditionally import BrowserRouter only in the browser
-  const Router = typeof window !== 'undefined' ? require('react-router-dom').BrowserRouter : null;
+  const router = useRouter();
 
   return (
-    <>
-      {Router && (
-        <Router>
-          <div className={`${merriweather.variable} ${ptSerif.variable}`}>
-            <Component {...pageProps} />
-          </div>
-        </Router>
-      )}
-      {!Router && <Component {...pageProps} />} {/* Render Component directly if not in the browser */}
+    <div className={`${merriweather.variable} ${ptSerif.variable}`}>
+      <Component {...pageProps} />
       <Analytics />
-    </>
+    </div>
   );
 }
 
