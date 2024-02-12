@@ -16,11 +16,37 @@ input{
 input::placeholder {
     color: rgb(0, 0, 0) !important;
 }
+.nextra-menu-mobile ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.nextra-menu-mobile .react-datepicker{
+    display: none;
+}
+.nextra-menu-mobile .calendar-wrapper{
+    margin-left: 0;
+}
+.nextra-menu-mobile li li {
+    width: calc(100% / 8);
+}
+.nextra-menu-mobile li li a {
+    margin: auto;
+}
+.nextra-menu-mobile li li li{
+    display: none;
+}
+.running-head {
+    color: crimson;
+    font-size: .8rem;
+    text-align: center;
+    font-family: var(--font-merriweather);
+    margin-bottom: 2rem;
+}
 main h1 {
     font-family: var(--font-merriweather);
     font-style: italic;
     text-align: center;
-    color: #9d0000 !important;
+    color: crimson !important;
 }
 main h2 {
     font-family: var(--font-ptSerif);
@@ -49,24 +75,15 @@ ol li::marker {
     font-family: var(--font-ptSerif);
     font-weight: bolder;
 }
-
 .nextra-scrollbar ul li a {
     font-family: var(--font-ptSerif);
 }
 .nextra-scrollbar ul li a:current {
     color: #9d0000;
 }
-.nextra-sidebar-container {
-    min-width: 21rem;
-}
-.nextra-sidebar-container li {
-    min-height: 25rem;
-}
-
 .calendar-wrapper {
     display: flex;
     flex-wrap: wrap; /* Allow flex items to wrap onto multiple lines */
-    margin-left: 2rem;
     gap: 1rem .5rem;
 }
 
@@ -120,7 +137,7 @@ ol li::marker {
     .inner:before {
     content: "+13";
     padding-left: 10px;
-    background-color: rgb(0, 112, 37);
+    background-color: #9d0000;
     color: #fff;
     }
     .inner:after {
@@ -149,7 +166,45 @@ ol li::marker {
     .checkbox:checked + .label .switch {
     right: 0px;
     }
+.react-datepicker__header {
+    background-color: white !important;
+}
+.react-datepicker__day--holidays {
+    background-color: white !important;
+    color: black !important;
+}
+.react-datepicker__day--holidays:hover {
+    background: #f0f0f0 !important;
+}
+.react-datepicker__day--selected {
+    border: 1px solid lightgray !important;
+    background-color: #f0f0f0 !important;
+    color: black !important;
     
+}
+footer {
+    background-color: #9d0000 !important;
+    color: white;
+}
+footer #copyright {
+    color: white;
+    width: 100%;
+}
+#footer-links {
+    display: flex;
+    margin-right: 20px;
+    }
+    
+    #footer-facebook img, #footer-insta img, #footer-youtube img, #footer-linkedin img {
+    display: inline;
+    height: 20px;
+    margin-top: 5px;
+    padding: 0 5px 0 5px;
+    }
+    
+    #footer-facebook img:hover, #footer-insta img:hover, #footer-youtube img:hover, #footer-linkedin img:hover {
+    opacity: .75;
+    }
 :is(html[class~=dark] .nextra-banner-container) {
     --tw-bg-opacity: .2 !important;
     background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
@@ -163,4 +218,32 @@ ol li::marker {
 :is(html[class~=dark] input) {
     --tw-bg-opacity: .2 !important;
     background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
+}
+@media screen and (max-width: 940px) {
+    main {
+        padding: 1rem .8rem 0 1rem !important;
+    }
+    blockquote {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+}
+@media screen and (min-width: 767px) {
+    .nextra-sidebar-container {
+        display: none !important;
+    }
+    .nextra-toc {
+        display: block !important;
+        width: 17rem !important;
+    }
+}
+@media screen and (max-width: 640px){
+    footer #copyright {
+        width: 148px;
+    }
+}
+@media screen and (max-width: 490px) {
+    .running-head {
+        display: none;
+    }
 }

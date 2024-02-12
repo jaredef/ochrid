@@ -5,15 +5,11 @@
         "theme": {
             "breadcrumb": false
         }
-        },
-    "calendar": {
-        "type": "separator",
-        "title": "Calendar"
-      },
+    },
     "january" : {
         "title": "January",
-        "display": "hidden",
         "type": "page",
+        "display": "hidden",
         "theme": {
             "breadcrumb": false
         }

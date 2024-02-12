@@ -93,6 +93,7 @@ const Calendar = () => {
                 selected={startDate}
                 onChange={handleDateChange}
                 customInput={<ExampleCustomInput />}
+                inline
             />
         </div>
     );
