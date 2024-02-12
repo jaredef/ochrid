@@ -1,3 +1,4 @@
+import NewStyle from '/components/datePicker-header';
 import Calendar from '/components/datePicker';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +11,9 @@ export default {
     logo: <><Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" /></>,
     search : {
         placeholder: "Search the Prologue"
+    },
+    navbar : {
+        extraContent : () => {return <NewStyle />}
     },
     toc : {
         title : null,

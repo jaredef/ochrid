@@ -106,6 +106,7 @@ ol li::marker {
     display: inline-block;
     text-align: left;
     top: 8px;
+    margin-bottom: .8rem;
     }
     .checkbox {
     display: none;
@@ -121,7 +122,7 @@ ol li::marker {
     display: block;
     width: 200%;
     margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
+    transition: margin 0.32s ease-in 0s;
     }
     .inner:before,
     .inner:after {
@@ -137,21 +138,21 @@ ol li::marker {
     .inner:before {
     content: "+13";
     padding-left: 10px;
-    background-color: #9d0000;
+    background-color: rgb(99, 0, 0);
     color: #fff;
     }
     .inner:after {
     content: "N.S.";
     padding-right: 10px;
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(99, 0, 0);
     color: #fff;
     text-align: right;
     }
     .switch {
     display: block;
-    width: 24px;
+    width: 25px;
     margin: 5px;
-    background: #fff;
+    background: rgb(255, 255, 255);
     position: absolute;
     top: 0;
     bottom: 0;

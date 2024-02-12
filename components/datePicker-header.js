@@ -20,7 +20,7 @@ const ToggleSwitch = ({ label, onClick }) => {
     );
 };
 
-const Calendar = () => {
+const NewStyle = () => {
     const [startDate, setStartDate] = useState(subDays(new Date(), 13));
     const [isNSActive, setIsNSActive] = useState(false); // State to track if "N.S" is active
     const router = useRouter();
@@ -86,16 +86,9 @@ const Calendar = () => {
 
     return (
         <div className="calendar-wrapper">
-            <DatePicker
-                holidays={holidays2024}
-                includeDates={year2024Dates}
-                selected={startDate}
-                onChange={handleDateChange}
-                customInput={<ExampleCustomInput />}
-                inline
-            />
+            <ToggleSwitch label=" " onClick={handleToggleSwitchClick} />
         </div>
     );
 };
 
-export default Calendar;
+export default NewStyle;
