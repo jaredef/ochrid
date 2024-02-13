@@ -45,7 +45,7 @@ input::placeholder {
     text-align: center;
     font-family: var(--font-merriweather);
     margin-bottom: 2rem;
-    width: 18rem;
+    width: 24rem;
 }
 .running-decoration {
     margin-top: .2rem;
@@ -196,7 +196,6 @@ ol li::marker {
 }
 footer {
     background-color: #9d0000 !important;
-    color: white;
 }
 footer #copyright {
     color: white;
@@ -207,16 +206,19 @@ footer #copyright {
     margin-right: 20px;
     }
     
-    #footer-facebook img, #footer-insta img, #footer-youtube img, #footer-linkedin img {
+#footer-facebook img, #footer-insta img, #footer-youtube img, #footer-linkedin img {
     display: inline;
     height: 20px;
     margin-top: 5px;
     padding: 0 5px 0 5px;
-    }
-    
-    #footer-facebook img:hover, #footer-insta img:hover, #footer-youtube img:hover, #footer-linkedin img:hover {
+}
+
+#footer-facebook img:hover, #footer-insta img:hover, #footer-youtube img:hover, #footer-linkedin img:hover {
     opacity: .75;
-    }
+}
+:is(html[class~=dark]) footer {
+    background-color: darkgrey;
+}
 :is(html[class~=dark] .nextra-banner-container) {
     --tw-bg-opacity: .2 !important;
     background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
@@ -252,5 +254,12 @@ footer #copyright {
 @media screen and (max-width: 640px){
     footer #copyright {
         width: 148px;
+    }
+    .nextra-banner-container {
+        padding-left: 0 !important;
+        margin: .2rem 0 0 0;
+    }
+    .nextra-banner-container .nx-px-4 {
+        padding-left: 0 !important;
     }
 }

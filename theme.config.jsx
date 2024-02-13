@@ -70,6 +70,10 @@ export default {
         defaultMenuCollapseLevel : 1
     },
     gitTimestamp: null,
+    i18n: [
+      { locale: 'en', text: 'English' },
+      { locale: 'sr', text: 'српски' }
+    ],
     footer: {
         text: () => {
             return (

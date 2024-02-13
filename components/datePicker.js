@@ -26,9 +26,10 @@ const Calendar = () => {
     const router = useRouter();
 
     useEffect(() => {
-        // Set the default active state to "O.S" button when the component mounts
-        handleOSButtonClick();
-    }, []);
+        if (isNSActive) {
+            handleNSButtonClick(); // Trigger handleNSButtonClick when the component mounts
+        }
+    }, [isNSActive]);
 
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
         <button className="calendar-date" onClick={onClick} ref={ref}>
@@ -38,11 +39,6 @@ const Calendar = () => {
 
     const handleToggleSwitchClick = () => {
         setIsNSActive(!isNSActive); // Toggle the state of "N.S" active
-        if (!isNSActive) {
-            handleNSButtonClick();
-        } else {
-            handleOSButtonClick();
-        }
     };
 
     const handleNSButtonClick = () => {

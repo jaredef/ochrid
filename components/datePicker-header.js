@@ -20,15 +20,17 @@ const ToggleSwitch = ({ label, onClick }) => {
     );
 };
 
-const NewStyle = () => {
+const Calendar = () => {
     const [startDate, setStartDate] = useState(subDays(new Date(), 13));
     const [isNSActive, setIsNSActive] = useState(false); // State to track if "N.S" is active
     const router = useRouter();
 
     useEffect(() => {
-        // Set the default active state to "O.S" button when the component mounts
-        handleOSButtonClick();
-    }, []);
+        console.log("isNSActive on mount:", isNSActive);
+        if (isNSActive) {
+            handleNSButtonClick(); // Trigger handleNSButtonClick when the component mounts
+        }
+    }, [isNSActive]);
 
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
         <button className="calendar-date" onClick={onClick} ref={ref}>
@@ -37,7 +39,9 @@ const NewStyle = () => {
     ));
 
     const handleToggleSwitchClick = () => {
+        console.log("isNSActive before toggle:", isNSActive);
         setIsNSActive(!isNSActive); // Toggle the state of "N.S" active
+        console.log("isNSActive after toggle:", isNSActive);
         if (!isNSActive) {
             handleNSButtonClick();
         } else {
@@ -91,4 +95,4 @@ const NewStyle = () => {
     );
 };
 
-export default NewStyle;
+export default Calendar;
