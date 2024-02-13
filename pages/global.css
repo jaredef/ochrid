@@ -36,11 +36,22 @@ input::placeholder {
     display: none;
 }
 .running-head {
+    display: flex;
+    margin-top: .3rem;
+}
+.running-head-date {
     color: crimson;
     font-size: .8rem;
     text-align: center;
     font-family: var(--font-merriweather);
     margin-bottom: 2rem;
+    width: 18rem;
+}
+.running-decoration {
+    margin-top: .2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Ctext x='0' y='10' fill='crimson'%3E~%3C/text%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    width: 100%;
 }
 main h1 {
     font-family: var(--font-merriweather);
@@ -144,7 +155,7 @@ ol li::marker {
     .inner:after {
     content: "N.S.";
     padding-right: 10px;
-    background-color: rgb(99, 0, 0);
+    background-color: rgb(88, 32, 32);
     color: #fff;
     text-align: right;
     }
@@ -241,10 +252,5 @@ footer #copyright {
 @media screen and (max-width: 640px){
     footer #copyright {
         width: 148px;
-    }
-}
-@media screen and (max-width: 490px) {
-    .running-head {
-        display: none;
     }
 }

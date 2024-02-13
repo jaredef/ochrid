@@ -1,9 +1,43 @@
+import { useRouter } from 'next/router'
+import { useConfig } from 'nextra-theme-docs'
 import NewStyle from '/components/datePicker-header';
 import Calendar from '/components/datePicker';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default {
+    useNextSeoProps() {
+        const { asPath } = useRouter()
+        if (asPath !== '/') {
+        return {
+            titleTemplate: '%s – The Prologue'
+        }
+        }
+        if (asPath === '/') {
+        return {
+          titleTemplate: '%s'
+        }
+        }
+    },
+    head: () => {
+        const { asPath, defaultLocale, locale } = useRouter()
+        const { frontMatter } = useConfig()
+        const url =
+          'https://ochrid.org' +
+          (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
+     
+        return (
+          <>
+            <meta property="og:url" content={url} />
+            <meta property="og:title" content={frontMatter.title || 'The Prologue'} />
+            <meta
+              property="og:description"
+              content={frontMatter.description || 'Lives of Saints, Hymns, Reflections and Homilies for Every Day of the Year'}
+            />
+            <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+          </>
+        )
+      },
     banner : {
         dismissible : false,
         text : (<><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={40} width={53} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></>)
