@@ -1,6 +1,13 @@
 {
     "index" : {
-        "title": "The Prologue of Ochrid",
+        "title": "The Prologue from Ochrid",
+        "display": "hidden",
+        "theme": {
+            "breadcrumb": false
+        }
+    },
+    "prologue" : {
+        "title": "The Prologue from Ochrid",
         "display": "hidden",
         "theme": {
             "breadcrumb": false

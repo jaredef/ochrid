@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
-import NewStyle from '/components/datePicker-header';
+import NsToggle from '/components/datePicker-header';
 import Calendar from '/components/datePicker';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -42,16 +42,16 @@ export default {
         dismissible : false,
         text : (<><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={40} width={53} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></>)
     },
-    logo: <><Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" /></>,
+    logo: <><Link href="/prologue"><Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" /></Link></>,
     search : {
         placeholder: "Search the Prologue"
     },
     navbar : {
-        extraContent : () => {return <NewStyle />}
+        extraContent : () => {return <NsToggle />}
     },
     toc : {
         title : null,
-        extraContent: () => {return <Calendar />;}
+        extraContent: () => {return <Calendar />}
     },
     primaryHue: 360,
     primarySaturation: 100,

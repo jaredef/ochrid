@@ -189,10 +189,27 @@ ol li::marker {
     background: #f0f0f0 !important;
 }
 .react-datepicker__day--selected {
+    border: 1px solid #993a3a !important;
+    color: #9d0000  !important;
+    background-color: #ffe3e3 !important;
+    border-radius: 20%;
+    font-weight: bold;
+}
+.react-datepicker__day--keyboard-selected {
+    background-color: white !important;
+}
+.react-datepicker__day--highlighted {
     border: 1px solid lightgray !important;
     background-color: #f0f0f0 !important;
+    font-weight: normal !important;
     color: black !important;
-    
+}
+.react-datepicker__day--today {
+    border: 1px solid lightgray !important;
+    background-color: #f0f0f0 !important;
+    color: rgb(73, 73, 73) !important;
+    border-radius: 20%;
+    font-weight: normal !important;
 }
 footer {
     background-color: #9d0000 !important;
@@ -212,7 +229,6 @@ footer #copyright {
     margin-top: 5px;
     padding: 0 5px 0 5px;
 }
-
 #footer-facebook img:hover, #footer-insta img:hover, #footer-youtube img:hover, #footer-linkedin img:hover {
     opacity: .75;
 }

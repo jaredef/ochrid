@@ -20,7 +20,7 @@ const ToggleSwitch = ({ label, onClick }) => {
     );
 };
 
-const Calendar = () => {
+const NsToggle = () => {
     const [startDate, setStartDate] = useState(subDays(new Date(), 13));
     const [isNSActive, setIsNSActive] = useState(false); // State to track if "N.S" is active
     const router = useRouter();
@@ -95,4 +95,4 @@ const Calendar = () => {
     );
 };
 
-export default Calendar;
+export default NsToggle;
