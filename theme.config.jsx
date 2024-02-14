@@ -6,19 +6,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default {
-    useNextSeoProps() {
-        const { asPath } = useRouter()
-        if (asPath !== '/') {
+  useNextSeoProps() {
+    const { asPath, locale } = useRouter();
+    if (asPath === '/prologue') {
         return {
-            titleTemplate: '%s – The Prologue'
-        }
-        }
-        if (asPath === '/') {
+            titleTemplate: '%s'
+        };
+    }
+    if ( locale === 'sr') {
         return {
-          titleTemplate: '%s'
-        }
-        }
-    },
+            titleTemplate: '%s - Охридског пролога'
+        };
+    }
+    if ( locale === 'en') {
+      return {
+        titleTemplate: '%s - The Prologue'
+      }
+    }
+    return {
+        titleTemplate: '%s – The Prologue'
+    };
+  },
     head: () => {
         const { asPath, defaultLocale, locale } = useRouter()
         const { frontMatter } = useConfig()
