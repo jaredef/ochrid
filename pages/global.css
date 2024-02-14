@@ -233,7 +233,7 @@ footer #copyright {
     opacity: .75;
 }
 :is(html[class~=dark]) footer {
-    background-color: darkgrey;
+    background-color: rgb(24, 24, 24) !important;
 }
 :is(html[class~=dark] .nextra-banner-container) {
     --tw-bg-opacity: .2 !important;
@@ -248,6 +248,17 @@ footer #copyright {
 :is(html[class~=dark] input) {
     --tw-bg-opacity: .2 !important;
     background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
+}
+:is(html[class~=dark] 
+.react-datepicker__header,
+.react-datepicker__month) {
+    background-color: rgb(24, 24, 24) !important;
+}
+:is(html[class~=dark] 
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__month) {
+    color: grey;
 }
 @media screen and (max-width: 940px) {
     main {
