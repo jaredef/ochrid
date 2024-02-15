@@ -249,6 +249,7 @@ footer #copyright {
     --tw-bg-opacity: .2 !important;
     background-color: rgba(255,255,255,var(--tw-bg-opacity)) !important;
 }
+/*
 :is(html[class~=dark] 
 .react-datepicker__header,
 .react-datepicker__month) {
@@ -259,7 +260,7 @@ footer #copyright {
 .react-datepicker__day-name,
 .react-datepicker__month) {
     color: grey;
-}
+} */
 @media screen and (max-width: 940px) {
     main {
         padding: 1rem .8rem 0 1rem !important;
