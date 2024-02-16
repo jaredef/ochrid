@@ -26,45 +26,30 @@ const NsToggle = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const storedIsNSActive = localStorage.getItem('isNSActive');
-        console.log('Retrieved isNSActive from localStorage:', storedIsNSActive);
-        if (storedIsNSActive !== null) {
-            setIsNSActive(JSON.parse(storedIsNSActive));
-        }
-    }, []);
-    
-    useEffect(() => {
-        console.log('Setting isNSActive in localStorage:', isNSActive);
-        localStorage.setItem('isNSActive', JSON.stringify(isNSActive));
-    }, [isNSActive]);
-    
-
-    useEffect(() => {
-        const storedIsNSActive = localStorage.getItem('isNSActive');
-        if (storedIsNSActive !== null) {
-            setIsNSActive(JSON.parse(storedIsNSActive));
+        console.log("Loading nsToggle from localStorage...");
+        const nsToggleFromLocalStorage = localStorage.getItem('nsToggle');
+        console.log("nsToggle from localStorage:", nsToggleFromLocalStorage);
+        if (nsToggleFromLocalStorage === 'true') {
+            setIsNSActive(true);
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('isNSActive', JSON.stringify(isNSActive));
+        console.log("Saving nsToggle to localStorage...");
+        localStorage.setItem('nsToggle', isNSActive);
     }, [isNSActive]);
 
     useEffect(() => {
-        console.log("isNSActive on mount:", isNSActive);
-        if (isNSActive) {
-            handleNSButtonClick(); // Trigger handleNSButtonClick when the component mounts
-        }
+        console.log("Current state of isNSActive:", isNSActive);
     }, [isNSActive]);
-
-    const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-        <button className="calendar-date" onClick={onClick} ref={ref}>
-            {value}
-        </button>
-    ));
 
     const handleToggleSwitchClick = () => {
-        setIsNSActive(!isNSActive); // Toggle the state of "N.S" active
+        setIsNSActive(!isNSActive);
+        if (!isNSActive) {
+            handleNSButtonClick();
+        } else {
+            handleOSButtonClick();
+        }
     };
 
     const handleNSButtonClick = () => {
@@ -114,6 +99,9 @@ const NsToggle = () => {
 };
 
 export default NsToggle;
+
+
+
 
 /*
 import React, { useState, forwardRef, useEffect } from 'react';
@@ -213,6 +201,4 @@ const NsToggle = () => {
     );
 };
 
-export default NsToggle;
-
-*/
+export default NsToggle; */
