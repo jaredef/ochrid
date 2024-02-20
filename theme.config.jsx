@@ -50,7 +50,7 @@ export default {
         dismissible : false,
         text : (<><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={40} width={53} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></>)
     },
-    logo: <><Link href="/prologue"><Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" /></Link></>,
+    logo: <Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />,
     search : {
         placeholder: "Search the Prologue"
     },
