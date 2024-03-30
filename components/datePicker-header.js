@@ -29,7 +29,7 @@ const NsToggle = () => {
             setIsNSActive(storedValue === 'true');
         }
     }, []);
-
+    
     useEffect(() => {
         if (!isNSActive) {
             handleOSButtonClick();
