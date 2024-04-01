@@ -52,7 +52,7 @@ export default {
         dismissible : false,
         text : (<>
                   <div className="presented" style={{display: 'block', backgroundColor: 'darkgreen', minHeight: '2rem'}} ><Link style={{display: 'block', color: 'white', paddingTop: '.3rem'}} href="https://rocor.org.au/" rel="noopener noreferrer" target="_blank">Presented by the Diocese of Australia and New Zealand — ROCOR.org.au</Link></div>
-                  <div style={{display: 'block', backgroundColor: 'white', minHeight: '2rem'}}><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={30} width={40} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></div>
+                  <div className="westsrbdio"><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={30} width={40} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></div>
                 </>
                 )
     },
