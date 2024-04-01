@@ -4,6 +4,8 @@ import NsToggle from '/components/datePicker-header';
 import Calendar from '/components/datePicker';
 import Image from 'next/image';
 import Link from 'next/link';
+import { subDays, format } from 'date-fns';
+
 
 export default {
   useNextSeoProps() {
@@ -20,11 +22,11 @@ export default {
     }
     if ( locale === 'en') {
       return {
-        titleTemplate: '%s - The Prologue'
+        titleTemplate: '%s - Prologue'
       }
     }
     return {
-        titleTemplate: '%s – The Prologue'
+        titleTemplate: '%s – Prologue'
     };
   },
     head: () => {
@@ -37,7 +39,7 @@ export default {
         return (
           <>
             <meta property="og:url" content={url} />
-            <meta property="og:title" content={frontMatter.title || 'The Prologue'} />
+            <meta property="og:title" content={frontMatter.title || 'Prologue — Orthodox Christian Devotional'} />
             <meta
               property="og:description"
               content={frontMatter.description || 'Lives of Saints, Hymns, Reflections and Homilies for Every Day of the Year'}
@@ -48,15 +50,37 @@ export default {
       },
     banner : {
         dismissible : false,
-        text : (<><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={40} width={53} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></>)
+        text : (<>
+                  <div className="presented" style={{display: 'block', backgroundColor: 'darkgreen', minHeight: '2rem'}} ><Link style={{display: 'block', color: 'white', paddingTop: '.3rem'}} href="https://rocor.org.au/" rel="noopener noreferrer" target="_blank">Presented by the Diocese of Australia and New Zealand — ROCOR.org.au</Link></div>
+                  <div style={{display: 'block', backgroundColor: 'white', minHeight: '2rem'}}><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={30} width={40} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></div>
+                </>
+                )
     },
-    logo: <Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />,
+    logo: <Link href="/prologue"><Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" /></Link>,
     search : {
         placeholder: "Search the Prologue"
     },
-    navbar : {
-        extraContent : () => {return <NsToggle />}
-    },
+    navbar: {
+      extraContent: () => {
+        const { asPath } = useRouter();
+        if (!asPath) return null; // Return early if asPath is undefined (e.g., during server-side rendering)
+    
+        // Calculate today's date and the date 13 days ago
+        const today = new Date();
+        const thirteenDaysAgo = subDays(today, 13);
+    
+        // Format the dates using date-fns
+        const Ns = format(today, 'MMMM/do').toLowerCase();
+        const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase();
+    
+        // Check if the current URL matches either today's date or 13 days ago
+        if (asPath === `/${Ns}` || asPath === `/${Os}` || asPath === `/prologue`) {
+          return <NsToggle />;
+        }
+    
+        return null;
+      }
+    },  
     toc : {
         title : null,
         extraContent: () => {return <Calendar />}
@@ -87,9 +111,9 @@ export default {
             return (
         <>
           <div id="copyright">
-            {new Date().getFullYear()} ©{' '}
+            English trans. © 1999 {' '}
             <a href="https://westsrbdio.org/" target="_blank">
-            Serbian Orthodox Diocese of Western America
+            | Serbian Orthodox Diocese of Western America
             </a>
           </div>
            <div id='footer-links'>

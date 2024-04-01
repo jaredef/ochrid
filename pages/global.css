@@ -1,10 +1,20 @@
 .nextra-banner-container {
     background-color: white !important;
     color: black !important;
-    margin: .25rem 0 .25rem 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 4.4rem;
 }
 .nextra-banner-container img{
-    margin-right: .5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+.nextra-banner-container .nx-px-4 {
+    padding: 0 !important;
+}
+.nextra-nav-container {
+    position: sticky !important;
+    top: 0 !important;
 }
 .nextra-nav-container-blur {
     background-color: #9d0000 !important;
@@ -289,5 +299,8 @@ footer #copyright {
     }
     .nextra-banner-container .nx-px-4 {
         padding-left: 0 !important;
+    }
+    .nextra-banner-container .presented a{
+        font-size: .6rem;
     }
 }
