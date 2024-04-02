@@ -74,7 +74,7 @@ export default {
         const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase();
     
         // Check if the current URL matches either today's date or 13 days ago
-        if (asPath === `/${Ns}` || asPath === `/${Os}` || asPath === `/prologue`) {
+        if (asPath === `/${Ns}` || asPath === `/${Os}`) {
           return <NsToggle />;
         }
     
