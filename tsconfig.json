@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/og.jsx"  ],
   "exclude": [
     "node_modules"
   ]

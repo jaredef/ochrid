@@ -29,21 +29,26 @@ export default {
         titleTemplate: '%s – Prologue'
     };
   },
-    head: () => {
+  head: () => {
         const { asPath, defaultLocale, locale } = useRouter()
         const { frontMatter } = useConfig()
         const url =
           'https://ochrid.org' +
           (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
+        const ogImageUrl = 'https://ochrid.vercel.app/api/og?'
+        + 'title=' + encodeURIComponent(frontMatter.title)
+        /*+ '&description=' + encodeURIComponent(frontMatter.description) */         
      
         return (
           <>
             <meta property="og:url" content={url} />
-            <meta property="og:title" content={frontMatter.title || 'Prologue — Orthodox Christian Devotional'} />
+            <meta property="og:title" content={frontMatter.title || 'Prologue — The Orthodox Christian Devotional'} />
             <meta
               property="og:description"
               content={frontMatter.description || 'Lives of Saints, Hymns, Reflections and Homilies for Every Day of the Year'}
             />
+            <meta property="og:image" content={ogImageUrl} />
+            <meta property="twitter:image" content={ogImageUrl} />
             <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
           </>
         )
