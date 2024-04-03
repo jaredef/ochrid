@@ -37,7 +37,7 @@ export default {
           (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
         const ogImageUrl = 'https://ochrid.vercel.app/api/og?'
         + 'title=' + encodeURIComponent(frontMatter.title)
-        /*+ '&description=' + encodeURIComponent(frontMatter.description) */         
+         '&description=' + encodeURIComponent(frontMatter.description)         
      
         return (
           <>
