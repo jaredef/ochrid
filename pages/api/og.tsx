@@ -24,37 +24,50 @@ export default function handler(request: VercelRequest) {
     return new ImageResponse(
       (
         <div
+        style={{
+          backgroundColor: 'crimson',
+          backgroundSize: '1280px 628px',
+          backgroundImage: 'url("/twitter-card.png")',
+          backgroundRepeat: 'no-repeat',
+          height: '628px',
+          width: '1280px',
+          display: 'flex',
+          textAlign: 'left',
+          alignItems: 'left',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          flexWrap: 'nowrap',
+        }}
+      >
+        <div
           style={{
-            backgroundColor: 'crimson',
-            backgroundSize: '1280px 628px',
-            backgroundImage: 'url("/twitter-card.png")',
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            textAlign: 'center',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            flexWrap: 'nowrap',
+            fontSize: 40,
+            fontStyle: 'normal',
+            letterSpacing: '-0.025em',
+            color: 'white',
+            marginTop: 30,
+            padding: '0 80px',
+            lineHeight: 1.4,
+            whiteSpace: 'pre-wrap',
           }}
         >
-          <div
-            style={{
-              fontSize: 60,
-              fontStyle: 'normal',
-              letterSpacing: '-0.025em',
-              color: 'white',
-              marginTop: 30,
-              padding: '0 120px',
-              lineHeight: 1.4,
-              whiteSpace: 'pre-wrap',
-            }}
-          >
-            {title}
-            <br />
-            {description}
-          </div>
+          {title}
         </div>
+        <div
+          style={{
+            fontSize: 60,
+            fontStyle: 'normal',
+            letterSpacing: '-0.025em',
+            color: 'white',
+            marginTop: 30,
+            padding: '0 80px',
+            lineHeight: 1.4,
+            whiteSpace: 'pre-wrap',
+          }}
+        >
+          {description}
+        </div>
+      </div>
       ),
       {
         width: 1280,
