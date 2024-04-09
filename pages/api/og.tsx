@@ -6,19 +6,13 @@ export const config = {
 };
  
 export default function handler(request: VercelRequest) {
+
   try {
     const { searchParams } = new URL(request.url);
- 
-    // ?title=<title>
-    const hasTitle = searchParams.has('title');
-    const title = hasTitle
-      ? searchParams.get('title')?.slice(0, 100)
-      : 'The Prologue from Ochrid';
- 
-    const hasDescription = searchParams.has('description');
-    const description = hasDescription
-      ? searchParams.get('description')?.slice(0,100)
-      : 'The Orthodox Christian Devotional';
+
+    const title = searchParams.get('title');
+    const description = searchParams.get('description');
+
 
     return new ImageResponse(
       (
