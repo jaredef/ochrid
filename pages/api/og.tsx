@@ -42,9 +42,9 @@ export default function handler(request: VercelRequest) {
             <img
               alt="Vercel"
               height={200}
-              src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
+              src="/sp-logo.png"
               style={{ margin: '0 30px' }}
-              width={232}
+              width={200}
             />
           </div>
           <div
