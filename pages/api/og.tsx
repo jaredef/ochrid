@@ -65,6 +65,8 @@ export default function handler(request: VercelRequest) {
             }}
           >
             {title}
+            <br />
+            {description}
           </div>
         </div>
       ),
