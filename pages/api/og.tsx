@@ -42,7 +42,7 @@ export default function handler(request: VercelRequest) {
             <img
               alt="Vercel"
               height={200}
-              src="/sp-logo.png"
+              src="https://ochrid.vercel.app/sp-logo.png"
               style={{ margin: '0 30px' }}
               width={200}
             />
