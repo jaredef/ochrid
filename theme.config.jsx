@@ -35,9 +35,9 @@ export default {
         const url =
           'https://ochrid.org' +
           (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
-        const ogImageUrl = 'https://ochrid.vercel.app/api/og?'
+        const ogImageUrl = 'https://localhost:3000/api/og?'
         + 'title=' + encodeURIComponent(frontMatter.title)
-        + '&description=' + encodeURIComponent(frontMatter.description)         
+        /*+ '&description=' + encodeURIComponent(frontMatter.description) */
      
         return (
           <>
@@ -56,12 +56,12 @@ export default {
     banner : {
         dismissible : false,
         text : (<>
-                  <div className="presented" style={{display: 'block', backgroundColor: 'darkgreen', minHeight: '2rem'}} ><Link style={{display: 'block', color: 'white', paddingTop: '.3rem'}} href="https://rocor.org.au/" rel="noopener noreferrer" target="_blank">Presented by the Diocese of Australia and New Zealand — ROCOR.org.au</Link></div>
+                  <div className="presented" style={{display: 'block', backgroundColor: 'darkgreen', minHeight: '2rem'}} ><Link style={{display: 'block', color: 'white', paddingTop: '.3rem'}} href="https://rocor.org.au/" rel="noopener noreferrer" target="_blank">Diocese of Australia and New Zealand — ROCOR.org.au</Link></div>
                   <div className="westsrbdio"><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={30} width={40} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></div>
                 </>
                 )
     },
-    logo: <Link href="/prologue"><Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" /></Link>,
+    logo: /*<Link href="/prologue">*/<Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />/*</Link>*/,
     search : {
         placeholder: "Search the Prologue"
     },
@@ -109,16 +109,18 @@ export default {
     gitTimestamp: null,
     i18n: [
       { locale: 'en', text: 'English' },
-      { locale: 'sr', text: 'српски' }
+      { locale: 'sr', text: 'српски' },
+      /*{ locale: 'en-US', text: 'English - Trans' },*/
     ],
     footer: {
         text: () => {
             return (
-        <>
+        <div id="footer-wrapper">
+          <div id="footer-serb">
           <div id="copyright">
             English trans. © 1999 {' '}
             <a href="https://westsrbdio.org/" target="_blank">
-            | Serbian Orthodox Diocese of Western America
+            Serbian Orthodox Diocese of Western America
             </a>
           </div>
            <div id='footer-links'>
@@ -127,7 +129,9 @@ export default {
             <div id='footer-linkedin'><a href="https://www.linkedin.com/in/westernamericandiocese/" rel="noopener" target="_blank"><img src="/social-linkedin-m.svg" /></a></div>
             <div id='footer-insta'><a href="https://www.instagram.com/westsrbdio/" rel="noopener" target="_blank"><img src="/social-insta-m.svg" /></a></div>
            </div>
-       </>
+         </div>
+         <div id="rocor-au">Contents displayed as presented by <Link href="https://www.rocor.org.au/?page_id=925">rocor.org.au</Link></div>
+       </div>
             )
       }
     }

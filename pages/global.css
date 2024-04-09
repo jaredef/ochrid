@@ -228,11 +228,14 @@ ol li::marker {
 footer {
     background-color: #9d0000 !important;
 }
-footer #copyright {
+#footer-serb {
+    display: flex;
+}
+#footer-serb #copyright {
     color: white;
     width: 100%;
 }
-#footer-links {
+#footer-serb #footer-links {
     display: flex;
     margin-right: 20px;
     }
@@ -245,6 +248,9 @@ footer #copyright {
 }
 #footer-facebook img:hover, #footer-insta img:hover, #footer-youtube img:hover, #footer-linkedin img:hover {
     opacity: .75;
+}
+#footer-wrapper #rocor-au {
+    color: white;
 }
 :is(html[class~=dark]) .westsrbdio {
     background-color: rgb(24, 24, 24) !important;
@@ -297,8 +303,8 @@ footer #copyright {
     }
 }
 @media screen and (max-width: 640px){
-    footer #copyright {
-        width: 148px;
+    #footer-serb #copyright {
+        width: 145px;
     }
     .nextra-banner-container {
         padding-left: 0 !important;
