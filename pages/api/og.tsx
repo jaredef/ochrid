@@ -6,14 +6,15 @@ export const config = {
 };
  
 export default function handler(request: VercelRequest) {
-
   try {
     const { searchParams } = new URL(request.url);
-
-    const title = searchParams.get('title');
-    const description = searchParams.get('description');
-
-
+ 
+    // ?title=<title>
+    const hasTitle = searchParams.has('title');
+    const title = hasTitle
+      ? searchParams.get('title')?.slice(0, 100)
+      : 'My default title';
+ 
     return new ImageResponse(
       (
         <div
@@ -39,11 +40,11 @@ export default function handler(request: VercelRequest) {
             }}
           >
             <img
-              alt="Prologue"
+              alt="Vercel"
               height={200}
-              src="https://ochrid.vercel.app/sp-logo.png"
+              src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
               style={{ margin: '0 30px' }}
-              width={200}
+              width={232}
             />
           </div>
           <div
@@ -59,8 +60,6 @@ export default function handler(request: VercelRequest) {
             }}
           >
             {title}
-            <br />
-            {description}
           </div>
         </div>
       ),
