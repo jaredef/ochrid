@@ -15,9 +15,15 @@ export default async function handler(request: VercelRequest) {
  
     // ?title=<title>
     const hasTitle = searchParams.has('title');
-    const title = hasTitle
+    let title = hasTitle
       ? searchParams.get('title')?.slice(0, 150)
       : 'Prologue — The Orthodox Christian Devotional';
+    
+    // Check if the sliced string's length is 150 characters
+    if (title && title.length === 150) {
+      // If yes, append '...' to the string
+      title += '...';
+    }    
  
     return new ImageResponse(
       (
@@ -28,9 +34,9 @@ export default async function handler(request: VercelRequest) {
               height: '100%',
               width: '100%',
               fontSize: 80,
-              lineHeight: 1.6,
+              lineHeight: 1.4,
               fontFamily: 'Merriweather-BoldItalic',
-              padding: '100px 60px 0 60px',
+              padding: '50px 60px 0 60px',
             }}
           >
             {title}
