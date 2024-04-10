@@ -17,13 +17,14 @@ export default async function handler(request: VercelRequest) {
     // ?title=<title>
     const hasTitle = searchParams.has('title');
     const title = hasTitle
-      ? searchParams.get('title')?.slice(0, 150)
+      ? searchParams.get('title')?.slice(0, 100)
       : 'Prologue — The Orthodox Christian Devotional';
+
     return new ImageResponse(
       (
         <div
           style={{
-            background: 'linear-gradient(to bottom, crimson, #7c0000)',
+            backgroundColor: 'crimson',
             backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
