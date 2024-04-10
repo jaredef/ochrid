@@ -10,16 +10,17 @@ export default async function handler(request: VercelRequest) {
     new URL('../../assets/Merriweather-BoldItalic.ttf', import.meta.url),
 
   ).then((res) => res.arrayBuffer());
-  
+
   try {
     const { searchParams } = new URL(request.url);
  
     // ?title=<title>
     const hasTitle = searchParams.has('title');
-    const title = hasTitle
-      ? searchParams.get('title')?.slice(0, 100)
+    const titleSlice = hasTitle
+      ? searchParams.get('title')?.slice(0, 150)
       : 'Prologue — The Orthodox Christian Devotional';
- 
+    
+      const title = titleSlice.length === 150 ? titleSlice + '...' : titleSlice;
     return new ImageResponse(
       (
         <div
@@ -29,22 +30,23 @@ export default async function handler(request: VercelRequest) {
             height: '100%',
             width: '100%',
             display: 'flex',
-            textAlign: 'center',
-            alignItems: 'center',
-            justifyContent: 'center',
+            textAlign: 'left',
+            alignItems: 'left',
+            justifyContent: 'left',
             flexDirection: 'column',
             flexWrap: 'nowrap',
           }}
         >
             <div
               style={{
-                backgroundColor: 'white',
+                color: 'white',
                 height: '100%',
                 width: '100%',
                 fontSize: 60,
                 fontFamily: 'Merriweather-BoldItalic',
                 paddingTop: '100px',
                 paddingLeft: '50px',
+                paddingRight: '50px',
               }}
             >
             {title}
