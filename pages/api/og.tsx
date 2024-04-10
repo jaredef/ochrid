@@ -21,31 +21,25 @@ export default async function handler(request: VercelRequest) {
  
     return new ImageResponse(
       (
-        <div
+        <div 
           style={{
-            backgroundColor: 'crimson',
-            backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
-            display: 'flex',
-            textAlign: 'center',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            flexWrap: 'nowrap',
+            backgroundColor: '#a20020',
           }}
-        >
-            <div
-              style={{
-                backgroundColor: '#c2082d',
-                height: '100%',
-                width: '100%',
-                fontSize: 60,
-                fontFamily: 'Merriweather-BoldItalic',
-                paddingTop: '100px',
-                paddingLeft: '20px',
-              }}
-            >
+          >
+          <div
+            style={{
+              height: '100%',
+              width: '80%',
+              fontSize: 60,
+              lineHeight: 1.2,
+              fontFamily: 'Merriweather-BoldItalic',
+              paddingTop: '100px',
+              paddingLeft: '20px',
+              color: 'white',
+            }}
+          >
             {title}
           </div>
         </div>
