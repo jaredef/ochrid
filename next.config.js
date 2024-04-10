@@ -23,7 +23,7 @@ module.exports = withNextra({
     ];
   },
   i18n: {
-    locales: ['en', 'sr', 'en-US'],
+    locales: ['en', 'sr'],
     defaultLocale: 'en'
   }
 });

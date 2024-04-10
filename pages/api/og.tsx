@@ -16,7 +16,7 @@ export default async function handler(request: VercelRequest) {
     // ?title=<title>
     const hasTitle = searchParams.has('title');
     const title = hasTitle
-      ? searchParams.get('title')?.slice(0, 100)
+      ? searchParams.get('title')?.slice(0, 150)
       : 'Prologue — The Orthodox Christian Devotional';
  
     return new ImageResponse(
@@ -43,11 +43,10 @@ export default async function handler(request: VercelRequest) {
                 fontSize: 60,
                 fontFamily: 'Merriweather-BoldItalic',
                 paddingTop: '100px',
-                paddingLeft: '50px',
-                paddingRight: '50px',
+                paddingLeft: '20px',
               }}
             >
-            <p style={{color: 'white'}}>{title}</p>
+            {title}
           </div>
         </div>
       ),

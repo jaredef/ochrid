@@ -74,10 +74,11 @@ export default {
         // Calculate today's date and the date 13 days ago
         const today = new Date();
         const thirteenDaysAgo = subDays(today, 13);
+        const twelveDaysAgo = subDays(today, 12);
     
         // Format the dates using date-fns
         const Ns = format(today, 'MMMM/do').toLowerCase();
-        const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase();
+        const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase() || format(twelveDaysAgo, 'MMMM/do').toLowerCase();
     
         // Check if the current URL matches either today's date or 13 days ago
         if (asPath === `/${Ns}` || asPath === `/${Os}`) {
