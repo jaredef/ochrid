@@ -16,11 +16,9 @@ export default async function handler(request: VercelRequest) {
  
     // ?title=<title>
     const hasTitle = searchParams.has('title');
-    const titleSlice = hasTitle
+    const title = hasTitle
       ? searchParams.get('title')?.slice(0, 150)
       : 'Prologue — The Orthodox Christian Devotional';
-    
-      const title = titleSlice.length === 150 ? titleSlice + '...' : titleSlice;
     return new ImageResponse(
       (
         <div
