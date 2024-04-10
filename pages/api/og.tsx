@@ -24,13 +24,13 @@ export default async function handler(request: VercelRequest) {
           <div
             style={{
               backgroundColor: '#a20020',
+              color: 'white',
               height: '100%',
               width: '100%',
-              fontSize: 60,
-              lineHeight: 1.2,
+              fontSize: 80,
+              lineHeight: 1.6,
               fontFamily: 'Merriweather-BoldItalic',
-              paddingTop: '100px',
-              paddingLeft: '20px',
+              padding: '100px 60px 0 60px',
             }}
           >
             {title}
