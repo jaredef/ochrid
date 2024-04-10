@@ -37,16 +37,17 @@ export default async function handler(request: VercelRequest) {
         >
             <div
               style={{
-                backgroundColor: 'white',
+                backgroundColor: '#c2082d',
                 height: '100%',
                 width: '100%',
                 fontSize: 60,
                 fontFamily: 'Merriweather-BoldItalic',
                 paddingTop: '100px',
                 paddingLeft: '50px',
+                paddingRight: '50px',
               }}
             >
-            {title}
+            <p style={{color: 'white'}}>{title}</p>
           </div>
         </div>
       ),
