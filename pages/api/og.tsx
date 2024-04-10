@@ -10,7 +10,6 @@ export default async function handler(request: VercelRequest) {
     new URL('../../assets/Merriweather-BoldItalic.ttf', import.meta.url),
 
   ).then((res) => res.arrayBuffer());
-
   try {
     const { searchParams } = new URL(request.url);
  
@@ -19,12 +18,12 @@ export default async function handler(request: VercelRequest) {
     const title = hasTitle
       ? searchParams.get('title')?.slice(0, 100)
       : 'Prologue — The Orthodox Christian Devotional';
-
+ 
     return new ImageResponse(
       (
         <div
           style={{
-            backgroundColor: 'crimson',
+            background: 'white',
             backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
@@ -38,6 +37,7 @@ export default async function handler(request: VercelRequest) {
         >
             <div
               style={{
+                backgroundColor: 'crimson',
                 color: 'white',
                 height: '100%',
                 width: '100%',
