@@ -50,6 +50,9 @@ export default {
             />
             <meta property="og:image" content={ogImageUrl} />
             <meta property="twitter:image" content={ogImageUrl} />
+            <meta property="twitter:card" content="summary_large_image"></meta>
+            <meta property="twitter:title" content={frontMatter.title || 'Prologue — The Orthodox Christian Devotional'}></meta>
+            <meta property="twitter:description" content={frontMatter.description || 'Lives of Saints, Hymns, Reflections and Homilies for Every Day of the Year'}></meta>
             <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
           </>
         )

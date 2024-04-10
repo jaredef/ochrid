@@ -36,7 +36,7 @@ export default async function handler(request: VercelRequest) {
               fontSize: 80,
               lineHeight: 1.4,
               fontFamily: 'Merriweather-BoldItalic',
-              padding: '50px 60px 0 60px',
+              padding: '20px 70px 0 50px',
             }}
           >
             {title}
