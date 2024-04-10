@@ -21,28 +21,20 @@ export default async function handler(request: VercelRequest) {
  
     return new ImageResponse(
       (
-        <div 
-          style={{
-            height: '100%',
-            width: '100%',
-            backgroundColor: '#a20020',
-          }}
-          >
           <div
             style={{
+              backgroundColor: '#a20020',
               height: '100%',
-              width: '80%',
+              width: '100%',
               fontSize: 60,
               lineHeight: 1.2,
               fontFamily: 'Merriweather-BoldItalic',
               paddingTop: '100px',
               paddingLeft: '20px',
-              color: 'white',
             }}
           >
             {title}
           </div>
-        </div>
       ),
       {
         width: 1200,
