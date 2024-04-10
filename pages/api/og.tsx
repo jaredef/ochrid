@@ -23,29 +23,27 @@ export default async function handler(request: VercelRequest) {
       (
         <div
           style={{
-            background: 'white',
+            backgroundColor: 'crimson',
             backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
             display: 'flex',
-            textAlign: 'left',
-            alignItems: 'left',
-            justifyContent: 'left',
+            textAlign: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
             flexDirection: 'column',
             flexWrap: 'nowrap',
           }}
         >
             <div
               style={{
-                backgroundColor: 'crimson',
-                color: 'white',
+                backgroundColor: 'white',
                 height: '100%',
                 width: '100%',
                 fontSize: 60,
                 fontFamily: 'Merriweather-BoldItalic',
                 paddingTop: '100px',
                 paddingLeft: '50px',
-                paddingRight: '50px',
               }}
             >
             {title}
