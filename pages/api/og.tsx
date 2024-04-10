@@ -5,7 +5,12 @@ export const config = {
   runtime: 'edge',
 };
  
-export default function handler(request: VercelRequest) {
+export default async function handler(request: VercelRequest) {
+  const fontData = await fetch(
+    new URL('../../assets/Merriweather-BoldItalic.ttf', import.meta.url),
+
+  ).then((res) => res.arrayBuffer());
+  
   try {
     const { searchParams } = new URL(request.url);
  
@@ -13,13 +18,13 @@ export default function handler(request: VercelRequest) {
     const hasTitle = searchParams.has('title');
     const title = hasTitle
       ? searchParams.get('title')?.slice(0, 100)
-      : 'My default title';
+      : 'Prologue — The Orthodox Christian Devotional';
  
     return new ImageResponse(
       (
         <div
           style={{
-            backgroundColor: 'black',
+            background: 'linear-gradient(to bottom, crimson, #7c0000)',
             backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
@@ -31,34 +36,17 @@ export default function handler(request: VercelRequest) {
             flexWrap: 'nowrap',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              justifyItems: 'center',
-            }}
-          >
-            <img
-              alt="Vercel"
-              height={200}
-              src="https://ochrid.vercel.app/sp-logo.png"
-              style={{ margin: '0 30px' }}
-              width={200}
-            />
-          </div>
-          <div
-            style={{
-              fontSize: 60,
-              fontStyle: 'normal',
-              letterSpacing: '-0.025em',
-              color: 'white',
-              marginTop: 30,
-              padding: '0 120px',
-              lineHeight: 1.4,
-              whiteSpace: 'pre-wrap',
-            }}
-          >
+            <div
+              style={{
+                backgroundColor: 'white',
+                height: '100%',
+                width: '100%',
+                fontSize: 60,
+                fontFamily: 'Merriweather-BoldItalic',
+                paddingTop: '100px',
+                paddingLeft: '50px',
+              }}
+            >
             {title}
           </div>
         </div>
@@ -66,6 +54,13 @@ export default function handler(request: VercelRequest) {
       {
         width: 1200,
         height: 630,
+        fonts: [
+          {
+            name: 'Merriweather-BoldItalic',
+            data: fontData,
+            style: 'normal',
+          },
+        ],
       },
     );
   } catch (e: any) {
