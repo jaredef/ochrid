@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { subDays, format } from 'date-fns';
 import YouGotScraped from '/components/scrapedFrom';
 import Purchase from '/components/purchase';
+import OrthoPrax from './components/orthoPrax';
 
 
 export default {
@@ -175,6 +176,11 @@ export default {
           <p style={{fontFamily: 'monospace', fontSize: '0.4rem', textAlign: 'center', color: 'lightgray', marginTop: '1rem'}} >
              This is an open source project under the patronage of St. Nikolai of Zhicha and Blessed Seraphim of Platina.
           </p>
+          <br />
+          <hr />
+          <div id="orthoprax">
+              <OrthoPrax />
+          </div>
        </div>
             )
       }

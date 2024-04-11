@@ -42,7 +42,7 @@ export default async function handler(request: VercelRequest) {
           padding: '10px 50px 10px 70px',
         }}
       >
-        <p style={{fontSize: 30, fontFamily: 'monospace', letterSpacing: '.2rem'}}>THE ORTHODOX CHRISTIAN DEVOTIONAL</p>
+        <span style={{fontSize: 30, letterSpacing: '.4rem'}}>~ THE ORTHODOX CHRISTIAN DEVOTIONAL ~</span>
             <div>
               {title}
             </div>
