@@ -16,7 +16,7 @@ export default async function handler(request: VercelRequest) {
     // ?title=<title>
     const hasTitle = searchParams.has('title');
     let title = hasTitle
-      ? searchParams.get('title')?.slice(0, 150)
+      ? searchParams.get('title')?.slice(0, 100)
       : 'Prologue — The Orthodox Christian Devotional';
     
     // Check if the sliced string's length is 150 characters
@@ -33,10 +33,10 @@ export default async function handler(request: VercelRequest) {
               color: 'white',
               height: '100%',
               width: '100%',
-              fontSize: 80,
+              fontSize: 70,
               lineHeight: 1.4,
               fontFamily: 'Merriweather-BoldItalic',
-              padding: '20px 70px 0 50px',
+              padding: '10px 80px 0 30px',
             }}
           >
             {title}
