@@ -29,6 +29,8 @@ export default async function handler(request: VercelRequest) {
       (
           <div
             style={{
+              display: 'flex',
+              alignItems: 'center',
               backgroundColor: '#a20020',
               color: 'white',
               height: '100%',
@@ -36,10 +38,12 @@ export default async function handler(request: VercelRequest) {
               fontSize: 70,
               lineHeight: 1.4,
               fontFamily: 'Merriweather-BoldItalic',
-              padding: '20px 40px 0 70px',
+              padding: '20px 50px 0 70px',
             }}
           >
-            {title}
+            <div>
+              {title}
+            </div>
           </div>
       ),
       {
