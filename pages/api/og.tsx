@@ -27,21 +27,22 @@ export default async function handler(request: VercelRequest) {
  
     return new ImageResponse(
       (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: '#a20020',
-              color: 'white',
-              height: '100%',
-              width: '100%',
-              fontSize: 70,
-              lineHeight: 1.4,
-              fontFamily: 'Merriweather-BoldItalic',
-              padding: '5px 50px 10px 70px',
-            }}
-          >
-            <span style={{fontSize: 20}}>The Orthodox Christian Devotional</span>
+        <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          backgroundColor: '#a20020',
+          color: 'white',
+          height: '100%',
+          width: '100%',
+          fontSize: 70,
+          lineHeight: 1.4,
+          fontFamily: 'Merriweather-BoldItalic',
+          padding: '5px 50px 10px 70px',
+        }}
+      >
+        <span style={{fontSize: 30}}>THE ORTHODOX CHRISTIAN DEVOTIONAL</span>
             <div>
               {title}
             </div>
