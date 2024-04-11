@@ -373,21 +373,33 @@ const YouGotScraped = () => {
         { 'December 31': 'https://web.archive.org/web/20170502021937/westserbdio.org/en/prologue/740-december-31' }
     ];
 
-    // Extract the month and day from the router's pathname
-    const monthFromPath = router.pathname.split('/')[1].toUpperCase();
-    const dayFromPath = router.pathname.split('/')[2].replace(/\D/g, '');
+// Extract the month and day from the router's pathname
+const pathParts = router.pathname.split('/');
+const monthFromPath = pathParts[1] ? pathParts[1].toUpperCase() : '';
+const dayFromPath = pathParts[2] ? pathParts[2].replace(/\D/g, '') : '';
 
-    // Find the corresponding URL in the mirror data array
-    const mirrorEntry = mirrorData.find(entry => {
-        const key = Object.keys(entry)[0];
-        const [entryMonth, entryDay] = key.split(' ');
-        // Compare month and day
-        return entryMonth.toUpperCase() === monthFromPath && parseInt(entryDay, 10) === parseInt(dayFromPath, 10);
-    });
+// If either month or day is missing, return a message
+if (!monthFromPath || !dayFromPath) {
+    return (
+        <div style={{marginTop: '2rem'}}>
+            <hr />
+            <br />
+            <p style={{fontFamily: 'monospace', fontSize: '0.6rem', textAlign: 'justify'}}>This website is an open source project affiliated with neither the Serbian Orthodox Diocese of Western America, nor the Diocese of Australia and New Zealand, ROCOR nor Sebastian Press.</p>
+        </div>
+    );
+}
 
-    // If mirror entry is found, extract the URL and date
-    const urlFromArray = mirrorEntry ? Object.values(mirrorEntry)[0] : '';
-    const dateFromArray = `${monthFromPath} ${dayFromPath}`;
+// Find the corresponding URL in the mirror data array
+const mirrorEntry = mirrorData.find(entry => {
+    const key = Object.keys(entry)[0];
+    const [entryMonth, entryDay] = key.split(' ');
+    // Compare month and day
+    return entryMonth.toUpperCase() === monthFromPath && parseInt(entryDay, 10) === parseInt(dayFromPath, 10);
+});
+
+// If mirror entry is found, extract the URL and date
+const urlFromArray = mirrorEntry ? Object.values(mirrorEntry)[0] : '';
+const dateFromArray = `${monthFromPath} ${dayFromPath}`;
 
     return (
         <div style={{marginTop: '2rem'}}>

@@ -108,5 +108,13 @@
         "theme": {
             "breadcrumb": false
         }
+    },
+    "homilies" : {
+        "title": "Homilies",
+        "type": "page",
+        "display": "hidden",
+        "theme": {
+            "breadcrumb": false
+        }
     }
 }
