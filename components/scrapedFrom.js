@@ -380,13 +380,7 @@ const dayFromPath = pathParts[2] ? pathParts[2].replace(/\D/g, '') : '';
 
 // If either month or day is missing, return a message
 if (!monthFromPath || !dayFromPath) {
-    return (
-        <div style={{marginTop: '2rem'}}>
-            <hr />
-            <br />
-            <p style={{fontFamily: 'monospace', fontSize: '0.6rem', textAlign: 'justify'}}>This website is an open source project affiliated with neither the Serbian Orthodox Diocese of Western America, nor the Diocese of Australia and New Zealand, ROCOR nor Sebastian Press.</p>
-        </div>
-    );
+    return ( console.log('Through the prayers of St. Nikolai of Zhicha and Blessed Seraphim of Platina, O Lord Jesus Christ our God, have mercy on us!'));
 }
 
 // Find the corresponding URL in the mirror data array
@@ -406,9 +400,6 @@ const dateFromArray = `${monthFromPath} ${dayFromPath}`;
             <hr />
             <br />
             <p style={{fontFamily: 'monospace', fontSize: '0.8rem'}}>The contents of this page are mirrored from <a href={urlFromArray} target="_blank" rel="noopener noreferrer"><span style={{color: 'crimson'}}>{dateFromArray}</span> — archive.org</a><br /><a href="https://westsrbdio.org" target="_blank" rel="noopener noreferrer">© 1999 Serbian Orthodox Diocese of Western America</a></p>
-            <br />
-            <br />
-            <p style={{fontFamily: 'monospace', fontSize: '0.6rem', textAlign: 'justify'}}>This website is an open source project affiliated with neither the Serbian Orthodox Diocese of Western America, nor the Diocese of Australia and New Zealand, ROCOR nor Sebastian Press.</p>
         </div>
     );
 }

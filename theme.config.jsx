@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { subDays, format } from 'date-fns';
 import YouGotScraped from '/components/scrapedFrom';
+import Purchase from '/components/purchase';
 
 
 export default {
@@ -18,7 +19,7 @@ export default {
     }
     if ( locale === 'sr') {
         return {
-            titleTemplate: '%s - Охридског пролога'
+            titleTemplate: '%s - Охридског пролога' /* Full Serbian support not yet */
         };
     }
     if ( locale === 'en') {
@@ -39,7 +40,7 @@ export default {
 
         const ogImageUrl = 'https://ochrid.vercel.app/api/og?'
         + 'title=' + encodeURIComponent(frontMatter.title)
-        /*+ '&' + 'description=' + encodeURIComponent(frontMatter.description) */
+        /*+ '&' + 'description=' + encodeURIComponent(frontMatter.description) */ /* Add more input to the og:image if you dare */
      
         return (
           <>
@@ -56,14 +57,14 @@ export default {
         )
       },
     banner : {
-        dismissible : false,
+        dismissible : false, /* You're going to look at it, and you're going to like it. */
         text : (<>
                   <div className="presented" style={{display: 'block', backgroundColor: 'darkgreen', minHeight: '2rem'}} ><Link style={{display: 'block', color: 'white', paddingTop: '.3rem'}} href="https://rocor.org.au/" rel="noopener noreferrer" target="_blank">Diocese of Australia and New Zealand — ROCOR.org.au</Link></div>
                   <div className="westsrbdio"><Link href="https://westsrbdio.org/" rel="noopener noreferrer" target="_blank"><Image style={{display:"inline-block"}} src="/wsrbdio.png" alt="Serbian Orthodox Diocesse of Western America" height={30} width={40} /> Serbian Orthodox Diocese <i>of</i> Western America</Link></div>
                 </>
                 )
     },
-    logo: /*<Link href="/prologue">*/<Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />/*</Link>*/,
+    logo: /*<Link href="/prologue">*/<Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />/*</Link>*/, /* This is unsemantic but I. Don't. Care. */
     search : {
         placeholder: "Search the Prologue"
     },
@@ -93,6 +94,7 @@ export default {
       return (
         <>
           {children}
+          <Purchase />
           <YouGotScraped />
         </>
       )
@@ -170,6 +172,9 @@ export default {
             </a>
           </div>
           </div>
+          <p style={{fontFamily: 'monospace', fontSize: '0.4rem', textAlign: 'center', color: 'lightgray', marginTop: '1rem'}} >
+             This is an open source project under the patronage of St. Nikolai of Zhicha and Blessed Seraphim of Platina.
+          </p>
        </div>
             )
       }

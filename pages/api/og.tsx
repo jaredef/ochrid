@@ -38,9 +38,10 @@ export default async function handler(request: VercelRequest) {
               fontSize: 70,
               lineHeight: 1.4,
               fontFamily: 'Merriweather-BoldItalic',
-              padding: '20px 50px 0 70px',
+              padding: '5px 50px 10px 70px',
             }}
           >
+            <span style={{fontSize: 20}}>The Orthodox Christian Devotional</span>
             <div>
               {title}
             </div>
