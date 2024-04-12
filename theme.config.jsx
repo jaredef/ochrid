@@ -81,7 +81,7 @@ export default {
     
         // Format the dates using date-fns
         const Ns = format(today, 'MMMM/do').toLowerCase();
-        const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase() || format(twelveDaysAgo, 'MMMM/do').toLowerCase();
+        const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase();
     
         // Check if the current URL matches either today's date or 13 days ago
         if (asPath === `/${Ns}` || asPath === `/${Os}`) {
