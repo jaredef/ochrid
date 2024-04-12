@@ -14,7 +14,7 @@ Through the prayers of St. Nikolai of Ohrid and Zhicha and Blessed Seraphim of P
 ## Table of Contents
 
 - [Installation](#installation)
-- [Copyrighted contents](#contents)
+- [Copyrighted contents](#copyrighted-contents)
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
