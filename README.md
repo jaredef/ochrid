@@ -25,6 +25,7 @@ Fork the repository and run as you would any next.js app.
 
 ```bash
 pnpm next
+```
 
 ## Copyrighted contents
 
