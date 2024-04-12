@@ -132,7 +132,7 @@ export default {
         <div id="footer-wrapper">
           <div id="footer-serb">
           <div id="copyright">
-            English trans. © 1999 {' '}
+            English translation © 1999 {' '}
             <a href="https://westsrbdio.org/" target="_blank">
             Serbian Orthodox Diocese of Western America
             </a>
@@ -177,9 +177,8 @@ export default {
              This is an open source project under the patronage of St. Nikolai of Zhicha and Blessed Seraphim of Platina.
           </p>
           <br />
-          <hr />
           <div id="orthoprax">
-              <OrthoPrax />
+                <OrthoPrax />
           </div>
        </div>
             )
