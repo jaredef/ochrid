@@ -83,6 +83,14 @@ main p {
     font-size: 1.2rem;
     line-height: 2.2rem !important;
 }
+#paginator {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-size: .8rem;
+    font-weight: 500;
+}
+#paginator:hover {
+    color: crimson;
+}
 .title-imprint {
     margin: auto;
 }

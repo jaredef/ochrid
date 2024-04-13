@@ -1,4 +1,3 @@
-
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -23,4 +22,4 @@ const RunningHead = () => {
     )
 }
 
-export default RunningHead; 
+export default RunningHead;

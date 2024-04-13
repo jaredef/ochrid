@@ -7,8 +7,8 @@ import Link from 'next/link';
 import { subDays, format } from 'date-fns';
 import YouGotScraped from '/components/scrapedFrom';
 import Purchase from '/components/purchase';
-import OrthoPrax from './components/orthoPrax';
-
+import { OrthoPraxFooter } from './components/orthoPrax';
+import { PaginatorTop, PaginatorBottom } from '/components/paginator';
 
 export default {
   useNextSeoProps() {
@@ -91,10 +91,16 @@ export default {
         return null;
       }
     },
+    navigation: { /*Turn off Nextra pagination, use <Paginator /> instead */
+      prev: false,
+      next: false
+    },
     main : ({children}) => {
       return (
         <>
+          <PaginatorTop /> {/* Rolled my own because Nextra doesn't have the best support for Navigation */}
           {children}
+          <PaginatorBottom />
           <Purchase />
           <YouGotScraped />
         </>
@@ -123,8 +129,8 @@ export default {
     gitTimestamp: null,
     i18n: [
       { locale: 'en', text: 'English' },
-      { locale: 'sr', text: 'српски' },
-      /*{ locale: 'en-US', text: 'English - Trans' },*/
+      { locale: 'sr', text: 'српски' }, /* Need to add the Serbian text in still */
+      //{ locale: 'en-US', text: 'English - Trans' }, /* A new translation if something fatal happens to this project */
     ],
     footer: {
         text: () => {
@@ -178,7 +184,7 @@ export default {
           </p>
           <br />
           <div id="orthoprax">
-                <OrthoPrax />
+                <OrthoPraxFooter />
           </div>
        </div>
             )
