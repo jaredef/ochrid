@@ -55,8 +55,8 @@ export default {
             <meta property="twitter:description" content={frontMatter.title || 'Lives of Saints, Hymns, Reflections and Homilies for Every Day of the Year'}></meta>
             <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
             <meta property="jesus-is-lord" content="
-              Eligius/Benedictus Deus. Benedictum Nomen Sanctum eius.
-              Eligius/Benedictus Deus. Benedictum Nomen Sanctum eius.
+              @jaredef/Benedictus Deus. Benedictum Nomen Sanctum eius.
+              @jaredef/Benedictus Deus. Benedictum Nomen Sanctum eius.
               ***************************************************
               Benedictus Iesus Christus, verus Deus et verus homo.
               Benedictum Nomen Iesu.
@@ -158,7 +158,7 @@ export default {
                 </>
                 )
     },
-    logo: /*<Link href="/prologue">*/<Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />/*</Link>*/, /* This is unsemantic but I. Don't. Care. */
+    logo: <Image src="/prologue.png" height={31} width={150} alt="The Prologue from Ochrid" />,
     search : {
         placeholder: "Search the Prologue"
     },
@@ -170,14 +170,13 @@ export default {
         // Calculate today's date and the date 13 days ago
         const today = new Date();
         const thirteenDaysAgo = subDays(today, 13);
-        const twelveDaysAgo = subDays(today, 12);
     
         // Format the dates using date-fns
         const Ns = format(today, 'MMMM/do').toLowerCase();
         const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase();
     
         // Check if the current URL matches either today's date or 13 days ago
-        if (asPath === `/${Ns}` || asPath === `/${Os}`) {
+        if (asPath === `/${Ns}` || asPath === `/${Os}` || asPath === `/` || asPath === `/prologue`) {
           return <NsToggle />;
         }
     

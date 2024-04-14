@@ -5,7 +5,7 @@ const withNextra = require('nextra')({
 });
 
 module.exports = withNextra({
-  async redirects() {
+  /*async redirects() {
     // Get today's date
     const today = new Date();
     // Subtract 13 days from today's date
@@ -20,8 +20,8 @@ module.exports = withNextra({
         destination: `/${destination}`,
         permanent: false,
       },
-    ];
-  },
+    ]; 
+  }, */ /* Uncomment this redirect if you would like to display today's Prologue entry on the default route */
   i18n: {
     locales: ['en', 'sr'],
     defaultLocale: 'en'

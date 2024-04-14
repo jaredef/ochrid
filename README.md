@@ -39,7 +39,7 @@ Parties utilizing this open-source project assume all responsibility for the use
 
 While every effort has been made to ensure compliance with applicable copyright laws, the creator of this open-source project cannot guarantee that all included materials are used in strict accordance with fair use principles or other exemptions provided by copyright law. Users are advised to conduct their own independent assessment of the legality of the use of copyrighted materials within this project.
 
-Furthermore, the inclusion of copyrighted materials within this project does not constitute an endorsement, recommendation, or approval by the creator of the project. Users should exercise caution and discretion when utilizing such materials and seek appropriate permissions or licenses from copyright holders as necessary.
+Furthermore, the inclusion of copyrighted materials within this project does not constitute an endorsement, recommendation, or approval by the any copyright holder. Users should exercise caution and discretion when utilizing such materials and seek appropriate permissions or licenses from copyright holders as they discern prudently.
 
 ## License
 
