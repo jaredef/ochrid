@@ -145,7 +145,7 @@ export default {
               We adore Thee, O Christ, and we bless Thee;
               We adore Thee, O Christ, and we bless Thee;
               because by Thy holy Cross Thou hast redeemed the world.
-              May the Holy Trinity be Blessed FOR EVER AND EVERY AMEN."
+              May the Holy Trinity be Blessed FOR EVER AND EVER AMEN."
             ></meta>
           </>
         )
