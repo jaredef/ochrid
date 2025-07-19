@@ -174,9 +174,15 @@ export default async function Page(props) {
   const params = await props.params
   const result = await importPage(params.mdxPath)
   const { default: MDXContent, toc, metadata } = result
+  
+  // Determine if this is a home route that uses IndexPageContent
+  const isHomeRoute = !params.mdxPath || params.mdxPath.length === 0 || 
+                     (params.mdxPath.length === 1 && params.mdxPath[0] === 'index')
+  
   return (
     <Wrapper toc={toc} metadata={metadata}>
-      <ProloguePlayer />
+      {/* Only render ProloguePlayer if it's NOT a home route */}
+      {!isHomeRoute && <ProloguePlayer />}
       <MDXContent {...props} params={params} />
     </Wrapper>
   )

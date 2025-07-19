@@ -8,6 +8,20 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
   const pathname = usePathname();
   const audioRef = useRef(null);
   
+  // Use override route if provided, otherwise use current pathname
+  const effectiveRoute = overrideRoute || pathname;
+
+  // Don't render on /prologue or /homilies routes (no audio content available)
+  if (pathname === '/prologue' || pathname === '/homilies') {
+    return null;
+  }
+
+  // Find the audio file that matches the effective route - memoized to prevent recalculation
+  const currentAudioFile = useMemo(() => 
+    audioFilesData.audioFiles.find(file => file.route === effectiveRoute),
+    [effectiveRoute]
+  );
+  
   // Audio player state
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -19,15 +33,6 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
   const [error, setError] = useState(null);
   const [isComponentLoading, setIsComponentLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-
-  // Use override route if provided, otherwise use current pathname
-  const effectiveRoute = overrideRoute || pathname;
-
-  // Find the audio file that matches the effective route - memoized to prevent recalculation
-  const currentAudioFile = useMemo(() => 
-    audioFilesData.audioFiles.find(file => file.route === effectiveRoute),
-    [effectiveRoute]
-  );
 
   // On mount, read open/closed state from localStorage
   useEffect(() => {
@@ -169,17 +174,17 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
       album: 'The Prologue',
       artwork: [
         {
-          src: '/prologue.png',
+          src: '/purchase-prologue.png',
           sizes: '512x512',
           type: 'image/png',
         },
         {
-          src: '/prologue.png', 
+          src: '/purchase-prologue.png', 
           sizes: '256x256',
           type: 'image/png',
         },
         {
-          src: '/prologue.png',
+          src: '/purchase-prologue.png',
           sizes: '128x128', 
           type: 'image/png',
         }
@@ -443,12 +448,6 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  // Don't render if no audio file matches current page
-  if (!currentAudioFile) {
-    console.log('No audio file found for route:', effectiveRoute);
-    return null;
-  }
-
   // Only log state changes in development, not on every render
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
@@ -658,7 +657,7 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
             </div>
 
             {/* Attribution */}
-            {currentAudioFile.youtubeUrl && (
+            {currentAudioFile?.youtubeUrl && (
               <div className="prologue-attribution">
                 <a
                   href={currentAudioFile.youtubeUrl}
@@ -1419,6 +1418,16 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
        `}</style>
     </div>
   );
+
+  // Log when no audio file is found, but don't return early to avoid hook order issues
+  if (!currentAudioFile) {
+    console.log('No audio file found for route:', effectiveRoute);
+  }
+
+  // Return null if no audio file, after all hooks have been called
+  if (!currentAudioFile) {
+    return null;
+  }
 };
 
 export default ProloguePlayer;

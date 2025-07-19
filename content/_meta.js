@@ -18,7 +18,8 @@ export default {
         "title": "The Prologue from Ochrid",
         "display": "hidden",
         "theme": {
-            "breadcrumb": false
+            "breadcrumb": false,
+            "layout": "full"
         }
     },
     "january" : {

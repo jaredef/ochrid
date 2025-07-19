@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import { format, subDays } from 'date-fns'
-import { importPage } from 'nextra/pages'
+import { compileMdx } from 'nextra/compile'
+import { MDXRemote } from 'nextra/mdx-remote'
 import { useMDXComponents as getMDXComponents } from '../mdx-components'
 
 const DynamicMDXContent = ({ onRouteChange = null }) => {
-  const [mdxContent, setMdxContent] = useState(null)
+  const [compiledMdx, setCompiledMdx] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
   const [isNSActive, setIsNSActive] = useState(false)
@@ -14,7 +15,7 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
   console.log('DynamicMDXContent component rendered')
 
   // Get MDX components
-  const { wrapper: Wrapper, ...components } = getMDXComponents()
+  const mdxComponents = getMDXComponents()
 
   useEffect(() => {
     // Load the calendar preference from localStorage
@@ -37,32 +38,39 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
         const formattedDate = format(targetDate, 'MMMM/do').toLowerCase()
         const [month, day] = formattedDate.split('/')
         
-        // Create the MDX path - this should match your content directory structure
-        const mdxPath = [month, day]
-        
         // Create the route string that matches the audio file routes
         const routeString = `/${month}/${day}`
         
-        console.log('Fetching MDX for:', { targetDate, formattedDate, mdxPath, routeString, isNSActive })
+        console.log('Fetching MDX for:', { targetDate, formattedDate, month, day, routeString, isNSActive })
         
         // Notify parent component of the route change
         if (onRouteChange) {
           onRouteChange(routeString)
         }
         
-        // Import the page using Nextra's importPage function
-        const result = await importPage(mdxPath)
+        // Fetch the raw MDX content from the API route
+        const apiUrl = `/api/mdx?month=${encodeURIComponent(month)}&day=${encodeURIComponent(day)}`
+        const response = await fetch(apiUrl)
         
-        console.log('ImportPage result:', result)
-        
-        if (result) {
-          setMdxContent(result)
-        } else {
-          setError(`Content not found for ${month}/${day}`)
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null)
+          throw new Error(errorData?.error || `Failed to fetch MDX: ${response.status} ${response.statusText}`)
         }
+        
+        const mdxSource = await response.text()
+        
+        // Compile the MDX using Nextra's compileMdx
+        const compiled = await compileMdx(mdxSource, {
+          // You can pass additional options here if needed
+          development: process.env.NODE_ENV === 'development'
+        })
+        
+        console.log('Compiled MDX result:', compiled)
+        
+        setCompiledMdx(compiled)
       } catch (err) {
         console.error('Error fetching MDX content:', err)
-        setError(`Failed to load content: ${err.message}`)
+        setError(`Failed to load content for ${month}/${day}: ${err.message}`)
       } finally {
         setIsLoading(false)
       }
@@ -76,7 +84,10 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
     const handleStorageChange = () => {
       if (typeof window !== 'undefined') {
         const storedValue = localStorage.getItem('newCalendar')
-        setIsNSActive(storedValue === 'true')
+        // Defer state update to avoid updating during render cycle
+        setTimeout(() => {
+          setIsNSActive(storedValue === 'true')
+        }, 0)
       }
     }
 
@@ -86,7 +97,10 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
     const handleToggleChange = () => {
       if (typeof window !== 'undefined') {
         const storedValue = localStorage.getItem('newCalendar')
-        setIsNSActive(storedValue === 'true')
+        // Defer state update to avoid updating during render cycle
+        setTimeout(() => {
+          setIsNSActive(storedValue === 'true')
+        }, 0)
       }
     }
 
@@ -101,7 +115,7 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
   if (isLoading) {
     return (
       <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <p>Loading today's content...</p>
+        <p>Turning to today's entry...</p>
       </div>
     )
   }
@@ -114,7 +128,7 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
     )
   }
 
-  if (!mdxContent) {
+  if (!compiledMdx) {
     return (
       <div style={{ padding: '2rem', textAlign: 'center' }}>
         <p>No content available for this date.</p>
@@ -122,17 +136,12 @@ const DynamicMDXContent = ({ onRouteChange = null }) => {
     )
   }
 
-  const { default: MDXContent, toc, metadata } = mdxContent
-
   return (
     <div style={{ marginTop: '2rem' }}>
-      {Wrapper ? (
-        <Wrapper toc={toc} metadata={metadata}>
-          <MDXContent />
-        </Wrapper>
-      ) : (
-        <MDXContent />
-      )}
+      <MDXRemote 
+        compiledSource={compiledMdx}
+        components={mdxComponents}
+      />
     </div>
   )
 }

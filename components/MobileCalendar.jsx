@@ -3,8 +3,49 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { startOfDay, subDays, format, getYear, eachDayOfInterval } from 'date-fns';
+import { startOfDay, subDays, format, getYear, eachDayOfInterval, differenceInDays } from 'date-fns';
 import { useRouter, usePathname } from 'next/navigation';
+
+// Utility function to update NS toggle based on selected date
+const updateNSToggleBasedOnDate = (selectedDate) => {
+    // Check if user has manually set the toggle recently (within last 5 seconds)
+    const lastManualChange = localStorage.getItem('lastManualToggleChange');
+    const now = Date.now();
+    const isRecentManualChange = lastManualChange && (now - parseInt(lastManualChange)) < 5000; // 5 seconds
+    
+    // Only auto-update if no recent manual change
+    if (!isRecentManualChange) {
+        const today = new Date();
+        const osDate = subDays(today, 13);
+        
+        // Calculate difference in days between selected date and both NS/OS dates
+        const diffFromToday = Math.abs(differenceInDays(selectedDate, today));
+        const diffFromOS = Math.abs(differenceInDays(selectedDate, osDate));
+        
+        // Determine which date (NS or OS) the selected date is closer to
+        const shouldBeNS = diffFromToday <= diffFromOS;
+        
+        // Check current toggle state
+        const currentToggleState = localStorage.getItem('newCalendar') === 'true';
+        
+        // Only update if the toggle state should change
+        if (shouldBeNS !== currentToggleState) {
+            // Update localStorage and dispatch event
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('newCalendar', shouldBeNS ? 'true' : 'false');
+                // Mark this as an automatic change (not manual)
+                localStorage.setItem('lastAutoToggleChange', now.toString());
+                // Defer event dispatch to avoid React render cycle conflicts
+                setTimeout(() => {
+                    // Dispatch custom event to notify other components
+                    window.dispatchEvent(new CustomEvent('calendarToggleChange'));
+                }, 0);
+            }
+        }
+    }
+    
+    return true; // Always allow navigation
+};
 
 const MobileCalendar = () => {
     const router = useRouter();
@@ -233,6 +274,10 @@ const MobileCalendar = () => {
 
     const handleDateChange = (date) => {
         setStartDate(date);
+        
+        // Update NS toggle based on selected date
+        updateNSToggleBasedOnDate(date);
+        
         const formattedDate = format(date, 'MMMM/do').toLowerCase();
         router.push(`/${formattedDate}`);
     };

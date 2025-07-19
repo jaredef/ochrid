@@ -3,23 +3,11 @@
 import { Navbar } from 'nextra-theme-docs'
 import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'
-import { subDays, format } from 'date-fns'
 import NsToggle from './datePicker-header'
 
 const CustomNavbar = () => {
   const router = useRouter()
   const pathname = usePathname()
-
-  // Calculate today's date and the date 13 days ago
-  const today = new Date()
-  const thirteenDaysAgo = subDays(today, 13)
-
-  // Format the dates using date-fns
-  const Ns = format(today, 'MMMM/do').toLowerCase()
-  const Os = format(thirteenDaysAgo, 'MMMM/do').toLowerCase()
-
-  // Check if the current URL matches either today's date or 13 days ago
-  const shouldShowNsToggle = pathname === `/${Ns}` || pathname === `/${Os}` || pathname === `/` || pathname === `/index` || pathname === `/prologue/`
 
   return (
     <div className="navbar-wrapper">
@@ -37,7 +25,7 @@ const CustomNavbar = () => {
         />
       }
     >
-      {shouldShowNsToggle && <NsToggle />}
+      <NsToggle />
     </Navbar>
     </div>
   )

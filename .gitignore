@@ -128,3 +128,5 @@ dist
 
 #sundry files
 ignore 
+
+public/_pagefind

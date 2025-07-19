@@ -23,6 +23,28 @@
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
+
+/* Override nextra-banner sticky behavior on mobile */
+@media (max-width: 768px) {
+    .nextra-banner,
+    .nextra-banner.x\:max-md\:sticky,
+    div.nextra-banner.x\:max-md\:sticky {
+        position: static !important;
+        top: auto !important;
+        z-index: auto !important;
+        /* Remove sticky positioning completely on mobile */
+        -webkit-position: static !important;
+        -moz-position: static !important;
+        -ms-position: static !important;
+        -o-position: static !important;
+    }
+    
+    /* Also target the x: prefixed class directly */
+    .x\:max-md\:sticky {
+        position: static !important;
+    }
+}
+
 .nextra-nav-container-blur {
     background-color: #9d0000 !important;
 }
@@ -168,6 +190,110 @@ ol li::marker {
     color: crimson;
     font-weight: bold;
 }
+
+/* Fix datepicker styling when rendered in TOC sidebar */
+.nextra-toc .react-datepicker,
+.nextra-toc .react-datepicker * {
+    font-style: normal !important;
+    font-family: var(--font-pt-serif-caption-regular), serif !important;
+}
+
+.nextra-toc .react-datepicker__current-month,
+.nextra-toc .react-datepicker__day-name,
+.nextra-toc .react-datepicker__day {
+    font-style: normal !important;
+    font-family: var(--font-pt-serif-caption-regular), serif !important;
+}
+
+/* Improve navigation arrow centering for all calendar components */
+.react-datepicker__navigation {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.react-datepicker__navigation-icon {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.react-datepicker__navigation-icon::before {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+}
+
+/* Fix arrow directions - left arrow should point left, right arrow should point right */
+.react-datepicker__navigation--previous .react-datepicker__navigation-icon::before {
+    transform: translate(-50%, -50%) rotate(-135deg) !important;
+}
+
+.react-datepicker__navigation--next .react-datepicker__navigation-icon::before {
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+}
+
+/* Additional arrow centering for specific calendar wrapper contexts */
+.calendar-wrapper .react-datepicker__navigation,
+.index-calendar-wrapper .react-datepicker__navigation,
+.mobile-calendar-sidebar .react-datepicker__navigation,
+.nextra-menu-mobile .mobile-calendar .react-datepicker__navigation {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.calendar-wrapper .react-datepicker__navigation-icon,
+.index-calendar-wrapper .react-datepicker__navigation-icon,
+.mobile-calendar-sidebar .react-datepicker__navigation-icon,
+.nextra-menu-mobile .mobile-calendar .react-datepicker__navigation-icon {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.calendar-wrapper .react-datepicker__navigation-icon::before,
+.index-calendar-wrapper .react-datepicker__navigation-icon::before,
+.mobile-calendar-sidebar .react-datepicker__navigation-icon::before,
+.nextra-menu-mobile .mobile-calendar .react-datepicker__navigation-icon::before {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+}
+
+/* Fix arrow directions for all calendar wrapper contexts */
+.calendar-wrapper .react-datepicker__navigation--previous .react-datepicker__navigation-icon::before,
+.index-calendar-wrapper .react-datepicker__navigation--previous .react-datepicker__navigation-icon::before,
+.mobile-calendar-sidebar .react-datepicker__navigation--previous .react-datepicker__navigation-icon::before,
+.nextra-menu-mobile .mobile-calendar .react-datepicker__navigation--previous .react-datepicker__navigation-icon::before {
+    transform: translate(-50%, -50%) rotate(-135deg) !important;
+}
+
+.calendar-wrapper .react-datepicker__navigation--next .react-datepicker__navigation-icon::before,
+.index-calendar-wrapper .react-datepicker__navigation--next .react-datepicker__navigation-icon::before,
+.mobile-calendar-sidebar .react-datepicker__navigation--next .react-datepicker__navigation-icon::before,
+.nextra-menu-mobile .mobile-calendar .react-datepicker__navigation--next .react-datepicker__navigation-icon::before {
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+}
+
 .calendar-wrapper {
     display: flex;
     flex-wrap: wrap; /* Allow flex items to wrap onto multiple lines */
