@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
-import audioFilesData from '../prologue-audio-files.json';
+import audioFilesData from '../assets/prologue-audio-files.json';
 
 const ProloguePlayer = ({ overrideRoute = null }) => {
   const pathname = usePathname();
