@@ -1,15 +1,17 @@
+'use client'
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 import { format, subDays, addDays } from 'date-fns';
 import { OrthoPraxHeader } from './orthoPrax';
 
 const PaginatorTop = () => {
     const router = useRouter();
+    const pathname = usePathname();
 
-    // Extract the month and day from the router's pathname
-    const pathParts = router.pathname.split('/');
-    const monthFromPath = pathParts[1] ? pathParts[1] : '';
-    const dayFromPath = pathParts[2] ? pathParts[2].replace(/\D/g, '') : '';
+    // Extract the month and day from the pathname
+    const pathParts = pathname.split('/').filter(segment => segment);
+    const monthFromPath = pathParts[0] ? pathParts[0] : '';
+    const dayFromPath = pathParts[1] ? pathParts[1].replace(/\D/g, '') : '';
 
     // Check if the URL pathname is valid
     const isValidPathname = monthFromPath && dayFromPath;
@@ -101,11 +103,12 @@ const PaginatorTop = () => {
 
 const PaginatorBottom = () => {
     const router = useRouter();
+    const pathname = usePathname();
 
-    // Extract the month and day from the router's pathname
-    const pathParts = router.pathname.split('/');
-    const monthFromPath = pathParts[1] ? pathParts[1] : '';
-    const dayFromPath = pathParts[2] ? pathParts[2].replace(/\D/g, '') : '';
+    // Extract the month and day from the pathname
+    const pathParts = pathname.split('/').filter(segment => segment);
+    const monthFromPath = pathParts[0] ? pathParts[0] : '';
+    const dayFromPath = pathParts[1] ? pathParts[1].replace(/\D/g, '') : '';
 
     // Check if the URL pathname is valid
     const isValidPathname = monthFromPath && dayFromPath;

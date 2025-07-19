@@ -1,14 +1,17 @@
-import { useRouter } from 'next/router';
+'use client'
+
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 const RunningHead = () => {
-    const router = useRouter();
+    const pathname = usePathname();
 
-    // Extract the month from the router's pathname
-    const monthFromPath = router.pathname.split('/')[1].toUpperCase();
+    // Extract the month from the pathname
+    const pathSegments = pathname.split('/').filter(segment => segment);
+    const monthFromPath = pathSegments[0] ? pathSegments[0].toUpperCase() : null;
 
-    // Extract the day from the router's pathname and strip the suffix
-    const dayFromPath = router.pathname.split('/')[2].replace(/\D/g, '');
+    // Extract the day from the pathname and strip the suffix
+    const dayFromPath = pathSegments[1] ? pathSegments[1].replace(/\D/g, '') : null;
 
     // Use the extracted month or default to the current month
     const month = monthFromPath || new Date().toLocaleString('default', { month: 'long' });
@@ -16,7 +19,7 @@ const RunningHead = () => {
     return (
         <div className="running-head">
             <div className="running-decoration"> </div>
-            <div className="running-head-date">{month} <Image className="four-dot" src="/four-dot.png" height={10} width={10} alt="Four dot" />{dayFromPath}</div>
+            <div className="running-head-date">{month} <Image className="four-dot" src="/four-dot.png" alt="" height={10} width={10} />{dayFromPath}</div>
             <div className="running-decoration"> </div>
         </div>
     )

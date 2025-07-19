@@ -17,6 +17,7 @@ Through the prayers of St. Nikolai of Ohrid and Zhicha and Blessed Seraphim of P
 - [Copyrighted contents](#copyrighted-contents)
 - [Disclaimer](#disclaimer)
 - [License](#license)
+- [Updates in version 1.1](#updates-in-version-1.1)
 
 ## Installation
 
@@ -44,3 +45,17 @@ Furthermore, the inclusion of copyrighted materials within this project does not
 ## License
 
 This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. See the LICENSE file for details.
+
+## Updates in version 1.1
+
+This update includes substantial updates to this project based on the feedback of users and most especially contributer(s) to this project.
+
+- Numerous updates to typographical errors in the text
+- Addition of an audio player component
+- Updated index page with new middleware routing and dynamic MDX content rendering for the daily reading
+- Updated calendar for mobile and desktop display
+- Complete dark mode styles
+- Updates to the banner and Prologue purchase advert
+- Upgrade to NextJS 15
+- Upgrade to Nextra 4.0
+- i18n Internationalization and Serbian version has been removed
