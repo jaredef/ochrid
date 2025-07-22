@@ -101,12 +101,12 @@ main h1 {
     color: crimson !important;
 }
 main h2 {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
     text-align: center;
     border: none;
 }
 main p {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
     font-size: 1.2rem;
     line-height: 2.2rem !important;
 }
@@ -142,11 +142,11 @@ blockquote {
 }
 
 ol li::marker {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
     font-weight: bolder;
 }
 .nextra-scrollbar ul li a {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
 }
 .nextra-scrollbar ul li a:current {
     color: #9d0000;
@@ -154,7 +154,7 @@ ol li::marker {
 
 /* Table of Contents Styling */
 .nextra-toc {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
 }
 
 .nextra-toc h4 {
@@ -164,7 +164,7 @@ ol li::marker {
 }
 
 .nextra-toc ul li a {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
     font-size: 0.9rem;
     line-height: 1.4;
 }
@@ -175,11 +175,11 @@ ol li::marker {
 
 /* Additional TOC styling for better typography */
 .nextra-toc .nx-text-sm {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
 }
 
 .nextra-toc .nx-text-xs {
-    font-family: var(--font-pt-serif-caption-regular);
+    font-family: var(--font-pt-serif-caption);
     font-size: 0.8rem;
 }
 
@@ -195,14 +195,14 @@ ol li::marker {
 .nextra-toc .react-datepicker,
 .nextra-toc .react-datepicker * {
     font-style: normal !important;
-    font-family: var(--font-pt-serif-caption-regular), serif !important;
+    font-family: var(--font-pt-serif-caption), serif !important;
 }
 
 .nextra-toc .react-datepicker__current-month,
 .nextra-toc .react-datepicker__day-name,
 .nextra-toc .react-datepicker__day {
     font-style: normal !important;
-    font-family: var(--font-pt-serif-caption-regular), serif !important;
+    font-family: var(--font-pt-serif-caption), serif !important;
 }
 
 /* Improve navigation arrow centering for all calendar components */

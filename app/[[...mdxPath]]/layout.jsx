@@ -18,9 +18,18 @@ const merriweatherBoldItalic = localFont({
   display: 'swap',
 })
 
-const ptSerifCaptionRegular = localFont({
-  src: '../../assets/PTSerifCaption-Regular.ttf',
-  variable: '--font-pt-serif-caption-regular',
+const ptSerifCaption = localFont({
+  src: [
+    {
+      path: '../../assets/PTSerifCaption-Regular.ttf',
+      style: 'normal',
+    },
+    {
+      path: '../../assets/PTSerifCaption-Italic.ttf',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-pt-serif-caption',
   display: 'swap',
 })
 
@@ -181,7 +190,7 @@ export default async function RootLayout({ children }) {
       dir="ltr"
       // Suggested by `next-themes` package https://github.com/pacocoursey/next-themes#with-app
       suppressHydrationWarning
-      className={`${merriweatherBoldItalic.variable} ${ptSerifCaptionRegular.variable}`}
+      className={`${merriweatherBoldItalic.variable} ${ptSerifCaption.variable}`}
     >
       <Head>
         <StaticMetadataHead />
