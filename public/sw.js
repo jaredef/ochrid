@@ -52,8 +52,8 @@ self.addEventListener('push', (event) => {
     
     const options = {
       body: data.body || 'Audio playback',
-      icon: '/prologue.png',
-      badge: '/prologue.png',
+      icon: '/title-imprint-192.png',
+      badge: '/title-imprint-192.png',
       tag: 'audio-playback',
       requireInteraction: false,
       actions: [

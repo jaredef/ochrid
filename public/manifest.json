@@ -1,7 +1,7 @@
 {
-  "name": "Orthodox Hagiography - The Prologue",
+  "name": "The Prologue from Ochrid",
   "short_name": "Prologue",
-  "description": "Daily readings from The Prologue of Ohrid",
+  "description": "Daily readings from the Prologue from Ochrid",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -11,13 +11,13 @@
   "lang": "en",
   "icons": [
     {
-      "src": "/prologue.png",
+      "src": "/title-imprint-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/prologue.png",
+      "src": "/title-imprint-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -26,9 +26,9 @@
   "categories": ["education", "religion", "books"],
   "screenshots": [
     {
-      "src": "/prologue.png",
+      "src": "/screenshot-1280.jpg",
       "sizes": "1280x720",
-      "type": "image/png",
+      "type": "image/jpg",
       "form_factor": "wide"
     }
   ],
@@ -36,11 +36,11 @@
     {
       "name": "Today's Reading",
       "short_name": "Today",
-      "description": "Open today's prologue reading",
+      "description": "Open today's Prologue entry",
       "url": "/",
       "icons": [
         {
-          "src": "/prologue.png",
+          "src": "/title-imprint-96.png",
           "sizes": "96x96"
         }
       ]
