@@ -315,7 +315,7 @@ const MobileCalendar = () => {
                         background-color: #ffffff !important;
                         border: none !important;
                         border-radius: 6px !important;
-                        font-family: var(--font-pt-serif-caption-regular), serif;
+                        font-family: var(--font-pt-serif-caption), serif;
                         width: auto !important;
                         max-width: none !important;
                         box-shadow: none !important;

@@ -373,7 +373,7 @@ const Calendar = () => {
 
                     .loading-text {
                         color: #6b7280;
-                        font-family: var(--font-pt-serif-caption-regular), serif;
+                        font-family: var(--font-pt-serif-caption), serif;
                         font-size: 0.9rem;
                         margin: 0;
                     }
@@ -426,7 +426,7 @@ const Calendar = () => {
                     background-color: #ffffff !important;
                     border: 2px solid #e5e7eb !important;
                     border-radius: 12px !important;
-                    font-family: var(--font-pt-serif-caption-regular), serif;
+                    font-family: var(--font-pt-serif-caption), serif;
                     width: 100% !important;
                     max-width: none !important;
                     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
@@ -582,7 +582,7 @@ const Calendar = () => {
                     border: 2px solid #e5e7eb !important;
                     border-radius: 8px !important;
                     color: #374151 !important;
-                    font-family: var(--font-pt-serif-caption-regular), serif !important;
+                    font-family: var(--font-pt-serif-caption), serif !important;
                     font-size: 1rem !important;
                     font-weight: 500 !important;
                     padding: 0.5rem 1rem !important;
