@@ -104,6 +104,10 @@ main h2 {
     font-family: var(--font-pt-serif-caption);
     text-align: center;
     border: none;
+    position: relative;
+}
+main h2 .subheading-anchor {
+    position: absolute; /* keep the "#" link from de-centering the header text */
 }
 main p {
     font-family: var(--font-pt-serif-caption);
@@ -223,6 +227,14 @@ ol li::marker {
     justify-content: center !important;
     width: 100% !important;
     height: 100% !important;
+
+    /*
+     * HACK: This icon element contains text for "Next month" or "Previous month", presumably for accessibility,
+     * which react-datepicker internally hides by pushing it out of view with `text-indent: -999em`.
+     * But since the text is forced into view by Safari when using `display: flex` above,
+     * we have to hide it using a transparent color instead.
+     */
+    color: transparent;
 }
 
 .react-datepicker__navigation-icon::before {
