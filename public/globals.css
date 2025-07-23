@@ -104,6 +104,10 @@ main h2 {
     font-family: var(--font-pt-serif-caption);
     text-align: center;
     border: none;
+    position: relative;
+}
+main h2 .subheading-anchor {
+    position: absolute; /* keep the "#" link from de-centering the header text */
 }
 main p {
     font-family: var(--font-pt-serif-caption);
