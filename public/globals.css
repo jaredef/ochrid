@@ -143,6 +143,7 @@ main p {
 
 blockquote {
     border: none;
+    text-indent: 1em hanging each-line;
 }
 
 ol li::marker {
