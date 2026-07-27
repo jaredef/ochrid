@@ -22,11 +22,8 @@ export async function GET(request) {
       // Read the MDX file
       let mdxContent = await readFile(filePath, 'utf-8')
       
-      // Remove import statements since components are provided via MDXRemote
-      mdxContent = mdxContent.replace(/^import\s+.*$/gm, '')
-      
-      // Clean up any empty lines left by removed imports
-      mdxContent = mdxContent.replace(/^\s*\n/gm, '')
+      // Remove import statement lines since components are provided via MDXRemote
+      mdxContent = mdxContent.replace(/^import\s+.*\n/gm, '')
       
       return new Response(mdxContent, {
         headers: {
