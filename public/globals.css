@@ -141,6 +141,42 @@ span.sub-red {
     font-size: 80%;
     line-height: 0;
 }
+.hymn-divider {
+    margin: 1.5rem auto;
+    max-width: 2rem;
+}
+main .hymn-divider + p.stanza {
+    margin-top: 0;
+}
+.hymn-divider .four-dot {
+    display: block;
+    margin-inline: auto;
+}
+/* Wrap each verse independently while keeping continuation lines indented. */
+main p.stanza {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    font-family: var(--font-pt-serif-caption);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    color: #374151;
+}
+html.dark main p.stanza {
+    color: #9ca3af;
+}
+main p.stanza > span {
+    display: block;
+    margin: 0;
+    padding-inline-start: 1.5rem;
+    text-indent: -1.5rem;
+    text-wrap: pretty;
+    text-align: start;
+    hyphens: manual;
+}
+main p.stanza > span + span {
+    margin-block-start: 0.35em;
+}
 main p,
 main li {
     hanging-punctuation: first last;
@@ -708,6 +744,7 @@ div[style="margin-top: 2rem;"] .running-head-date {
         margin-block: 1.5rem 0.75rem;
     }
     main p,
+    main p.stanza,
     main li {
         font-family: var(--font-pt-serif-caption);
         font-size: 1.125rem;
@@ -716,6 +753,11 @@ div[style="margin-top: 2rem;"] .running-head-date {
     }
     main p {
         margin-block: 1rem 0;
+    }
+    main p.stanza > span {
+        padding-inline-start: 0;
+        text-indent: 0;
+        text-align: center;
     }
     main > p:not(.stanza):not(.sub-red) {
         text-align: justify;

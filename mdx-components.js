@@ -2,6 +2,7 @@ import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs' // ne
 import Image from 'next/image'
 import RunningHead from './components/runningHead'
 import CustomPaginator from './components/CustomPaginator'
+import HymnDivider from './components/HymnDivider'
 
 // Get the default MDX components
 const themeComponents = getThemeComponents()
@@ -14,6 +15,7 @@ export function useMDXComponents(components) {
     Image,
     RunningHead,
     CustomPaginator,
+    HymnDivider,
     ...components
   }
 }
