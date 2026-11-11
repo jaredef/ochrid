@@ -221,14 +221,9 @@ main p {
     margin: auto;
 }
 
-/* Dark mode image overlay for title-imprint */
 :is(html[class~=dark]) .title-imprint {
-    filter: brightness(1.3) contrast(1.2);
+    filter: invert(1);
     transition: filter 0.3s ease;
-}
-
-:is(html[class~=dark]) .title-imprint:hover {
-    filter: brightness(1.4) contrast(1.3);
 }
 
 .four-dot {
