@@ -110,6 +110,37 @@ main h2 {
 main h2 .subheading-anchor {
     position: absolute; /* keep the "#" link from de-centering the header text */
 }
+.sub-red {
+    color: crimson;
+    text-wrap: balance;
+}
+p.sub-red {
+    text-align: center;
+    font-weight: bold;
+}
+main {
+    --section-heading-line-height: 2.25rem;
+}
+main h2 {
+    line-height: var(--section-heading-line-height);
+}
+main h2:has(+ p.sub-red) {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+main h2 + p.sub-red {
+    margin-top: 0.35em;
+}
+main p.sub-red + p.sub-red {
+    margin-top: 0;
+}
+main p.sub-red::first-line {
+    line-height: var(--section-heading-line-height);
+}
+span.sub-red {
+    font-size: 80%;
+    line-height: 0;
+}
 main p,
 main li {
     hanging-punctuation: first last;
