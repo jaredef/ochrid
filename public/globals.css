@@ -110,6 +110,100 @@ main h2 {
 main h2 .subheading-anchor {
     position: absolute; /* keep the "#" link from de-centering the header text */
 }
+.sub-red {
+    color: crimson;
+    text-wrap: balance;
+}
+p.sub-red {
+    text-align: center;
+    font-weight: bold;
+}
+main {
+    --section-heading-line-height: 2.25rem;
+}
+main h2 {
+    line-height: var(--section-heading-line-height);
+}
+main h2:has(+ p.sub-red) {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+main h2 + p.sub-red {
+    margin-top: 0.35em;
+}
+main p.sub-red + p.sub-red {
+    margin-top: 0;
+}
+main p.sub-red::first-line {
+    line-height: var(--section-heading-line-height);
+}
+.epigraph,
+.attribution {
+    text-align: right;
+}
+blockquote.epigraph {
+    margin: 2rem 0;
+    padding: 0;
+    text-indent: 0;
+    font-style: italic;
+    text-wrap: balance;
+}
+blockquote.epigraph > p {
+    margin: 0;
+    font-style: inherit;
+    text-wrap: inherit;
+}
+.epigraph cite {
+    display: block;
+    font-style: italic;
+    font-family: var(--font-pt-serif-caption);
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+}
+span.sub-red {
+    font-size: 80%;
+    line-height: 0;
+}
+.hymn-divider {
+    margin: 1.5rem auto;
+    max-width: 2rem;
+}
+main .hymn-divider + p.stanza {
+    margin-top: 0;
+}
+.hymn-divider .four-dot {
+    display: block;
+    margin-inline: auto;
+}
+/* Wrap each verse independently while keeping continuation lines indented. */
+main p.stanza {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    font-family: var(--font-pt-serif-caption);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    color: #374151;
+}
+html.dark main p.stanza {
+    color: #9ca3af;
+}
+main p.stanza > span {
+    display: block;
+    margin: 0;
+    padding-inline-start: 1.5rem;
+    text-indent: -1.5rem;
+    text-wrap: balance;
+    text-align: start;
+    hyphens: manual;
+}
+main p.stanza > span + span {
+    margin-block-start: 0.35em;
+}
+main p,
+main li {
+    hanging-punctuation: first last;
+}
 main p {
     font-family: var(--font-pt-serif-caption);
     font-size: 1.2rem;
@@ -127,14 +221,9 @@ main p {
     margin: auto;
 }
 
-/* Dark mode image overlay for title-imprint */
 :is(html[class~=dark]) .title-imprint {
-    filter: brightness(1.3) contrast(1.2);
+    filter: invert(1);
     transition: filter 0.3s ease;
-}
-
-:is(html[class~=dark]) .title-imprint:hover {
-    filter: brightness(1.4) contrast(1.3);
 }
 
 .four-dot {
@@ -619,4 +708,91 @@ footer {
 /* Target running head within DynamicMDXContent component (only renders on index) */
 div[style="margin-top: 2rem;"] .running-head-date {
     display: none;
+}
+
+
+@media (max-width: 767px) {
+    /* Add 4px to the outer article's existing 16px gutters. */
+    main {
+        --section-heading-line-height: 1.8375rem;
+        padding-inline: 0.25rem !important;
+    }
+    html:not(.dark),
+    html:not(.dark) body {
+        background-color: #faf7ef;
+    }
+    html:not(.dark) main {
+        color: #29251f;
+    }
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+        font-family: var(--font-pt-serif-caption);
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: normal;
+        text-wrap: balance;
+    }
+    main h1 {
+        font-family: var(--font-merriweather-bold-italic);
+        font-style: italic;
+        font-size: 1.75rem;
+        line-height: 1.3;
+        margin-block: 1.5rem 2rem;
+    }
+    main h2 {
+        font-size: 1.3125rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-block: 2.5rem 1.25rem;
+    }
+    main h3 {
+        font-size: 1.25rem;
+        line-height: 1.4;
+        margin-block: 2rem 1rem;
+    }
+    main h4,
+    main h5,
+    main h6 {
+        font-size: 1.125rem;
+        line-height: 1.5;
+        margin-block: 1.5rem 0.75rem;
+    }
+    main p,
+    main p.stanza,
+    main li {
+        font-family: var(--font-pt-serif-caption);
+        font-size: 1.125rem;
+        line-height: 1.5 !important;
+        text-wrap: pretty
+    }
+    main p {
+        margin-block: 1rem 0;
+    }
+    main p.stanza > span {
+        padding-inline-start: 0;
+        text-indent: 0;
+        text-align: center;
+    }
+    main > p:not(.stanza):not(.sub-red) {
+        text-align: justify;
+        text-align-last: start;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        hyphenate-limit-chars: 7 3 3;
+    }
+    .running-head-date,
+    #paginator,
+    main small,
+    main figcaption {
+        font-size: 0.8125rem;
+        line-height: calc(18 / 13);
+    }
+    .epigraph cite {
+        font-size: 1.125rem;
+        line-height: 1.5;
+    }
 }
