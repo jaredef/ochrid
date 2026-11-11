@@ -193,7 +193,7 @@ main p.stanza > span {
     margin: 0;
     padding-inline-start: 1.5rem;
     text-indent: -1.5rem;
-    text-wrap: pretty;
+    text-wrap: balance;
     text-align: start;
     hyphens: manual;
 }
