@@ -137,6 +137,29 @@ main p.sub-red + p.sub-red {
 main p.sub-red::first-line {
     line-height: var(--section-heading-line-height);
 }
+.epigraph,
+.attribution {
+    text-align: right;
+}
+blockquote.epigraph {
+    margin: 2rem 0;
+    padding: 0;
+    text-indent: 0;
+    font-style: italic;
+    text-wrap: balance;
+}
+blockquote.epigraph > p {
+    margin: 0;
+    font-style: inherit;
+    text-wrap: inherit;
+}
+.epigraph cite {
+    display: block;
+    font-style: italic;
+    font-family: var(--font-pt-serif-caption);
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+}
 span.sub-red {
     font-size: 80%;
     line-height: 0;
@@ -772,5 +795,9 @@ div[style="margin-top: 2rem;"] .running-head-date {
     main figcaption {
         font-size: 0.8125rem;
         line-height: calc(18 / 13);
+    }
+    .epigraph cite {
+        font-size: 1.125rem;
+        line-height: 1.5;
     }
 }
