@@ -1,127 +1,69 @@
 'use client'
 
-import React, { useState, forwardRef, useEffect } from 'react';
-import { eachDayOfInterval, startOfDay, subDays, format, differenceInDays } from 'date-fns';
-import { useRouter, usePathname } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import {
+    CALENDAR_NAMES,
+    TOGGLE_EVENT,
+    getIsNewCalendar,
+    setCalendarMode,
+    readingDateFromPath,
+    autoSelectCalendarFor,
+} from './calendarStyle';
 
-const ToggleSwitch = ({ label, onChange, isChecked }) => {
-    return (
-        <div className="toggle-container">
-            {label}{" "}
-            <div className="toggle-switch">
-                <input type="checkbox" className="checkbox"
-                    name={label} id={label} onChange={onChange} checked={isChecked} />
-                <label className="label" htmlFor={label}>
-                    <span className="inner" />
-                    <span className="switch" />
-                </label>
-            </div>
-        </div>
-    );
-};
-
-const NsToggle = () => {
-    const [startDate, setStartDate] = useState(subDays(new Date(), 13));
-    const [isNSActive, setIsNSActive] = useState(false); // State to track if "N.S" is active
-    const router = useRouter();
+// Navbar control showing which calendar the reader is following.
+// The highlighted segment is always the calendar in use, never the one you would switch to.
+const CalendarStyleControl = () => {
+    const [isNewCalendar, setIsNewCalendar] = useState(false);
     const pathname = usePathname();
 
+    // Load the saved choice and stay in sync with changes made elsewhere (calendars, notices, other tabs).
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const storedValue = localStorage.getItem('newCalendar');
-            setIsNSActive(storedValue === 'true');
-        }
+        const sync = () => setIsNewCalendar(getIsNewCalendar());
+        sync();
+        window.addEventListener(TOGGLE_EVENT, sync);
+        window.addEventListener('storage', sync);
+        return () => {
+            window.removeEventListener(TOGGLE_EVENT, sync);
+            window.removeEventListener('storage', sync);
+        };
     }, []);
-    
-    // Update toggle state based on current route (only if user hasn't manually set it recently)
+
+    // On a day page, follow the calendar on which that entry is closer to today.
     useEffect(() => {
-        // Don't auto-update on special pages
-        if (pathname === '/prologue' || pathname === '/' || pathname === '/index') {
-            return;
-        }
-        
-        // Check if user has manually set the toggle recently (within last 5 seconds)
-        const lastManualChange = localStorage.getItem('lastManualToggleChange');
-        const now = Date.now();
-        const isRecentManualChange = lastManualChange && (now - parseInt(lastManualChange)) < 5000; // 5 seconds
-        
-        // Only auto-update if no recent manual change
-        if (!isRecentManualChange) {
-            // Extract date from current path and determine if it's NS or OS
-            const pathParts = pathname.split('/').filter(segment => segment);
-            const monthFromPath = pathParts[0]?.toLowerCase();
-            const dayFromPath = pathParts[1]?.replace(/\D/g, '');
-            
-            const validMonthPaths = [
-                'january', 'february', 'march', 'april', 'may', 'june', 
-                'july', 'august', 'september', 'october', 'november', 'december'
-            ];
-            
-            if (validMonthPaths.includes(monthFromPath) && dayFromPath) {
-                const currentYear = new Date().getFullYear();
-                const selectedDate = new Date(`${monthFromPath} ${dayFromPath}, ${currentYear}`);
-                const today = new Date();
-                const osDate = subDays(today, 13);
-                
-                // Calculate difference in days between selected date and both NS/OS dates
-                const diffFromToday = Math.abs(differenceInDays(selectedDate, today));
-                const diffFromOS = Math.abs(differenceInDays(selectedDate, osDate));
-                
-                // Determine which date (NS or OS) the selected date is closer to
-                const shouldBeNS = diffFromToday <= diffFromOS;
-                
-                // Update toggle state if it doesn't match what it should be
-                if (shouldBeNS !== isNSActive) {
-                    setIsNSActive(shouldBeNS);
-                    if (typeof window !== 'undefined') {
-                        localStorage.setItem('newCalendar', shouldBeNS ? 'true' : 'false');
-                        // Mark this as an automatic change (not manual)
-                        localStorage.setItem('lastAutoToggleChange', now.toString());
-                        // Defer event dispatch to avoid React render cycle conflicts
-                        setTimeout(() => {
-                            // Dispatch custom event to notify other components
-                            window.dispatchEvent(new CustomEvent('calendarToggleChange'));
-                        }, 0);
-                    }
-                }
-            }
-        }
-    }, [pathname, isNSActive]);
+        autoSelectCalendarFor(readingDateFromPath(pathname));
+    }, [pathname]);
 
-    const handleToggleSwitchClick = () => {
-        setIsNSActive(prevIsNSActive => {
-            const newIsNSActive = !prevIsNSActive;
-            if (typeof window !== 'undefined') {
-                localStorage.setItem('newCalendar', newIsNSActive ? 'true' : 'false');
-                // Mark this as a manual change with timestamp
-                localStorage.setItem('lastManualToggleChange', Date.now().toString());
-                // Defer event dispatch to avoid React render cycle conflicts
-                setTimeout(() => {
-                    // Dispatch custom event to notify other components
-                    window.dispatchEvent(new CustomEvent('calendarToggleChange'));
-                }, 0);
-            }
-            return newIsNSActive;
-        });
-    };
-
-    const handleNSButtonClick = () => {
-        setStartDate(new Date());
-        const formattedDate = format(new Date(), 'MMMM/do').toLowerCase();
-        router.push(`/${formattedDate}`);
-    };
-
-    const handleOSButtonClick = () => {
-        setStartDate(subDays(new Date(), 13));
-        const formattedDate = format(subDays(new Date(), 13), 'MMMM/do').toLowerCase();
-        router.push(`/${formattedDate}`);
+    const choose = (nextIsNewCalendar) => {
+        if (nextIsNewCalendar === isNewCalendar) return;
+        setIsNewCalendar(nextIsNewCalendar);
+        setCalendarMode(nextIsNewCalendar, { source: 'manual' });
     };
 
     return (
-        <div className="calendar-wrapper">
-            <ToggleSwitch label=" " onChange={handleToggleSwitchClick} isChecked={isNSActive} />
+        <div className="calendar-style-control" role="radiogroup" aria-label="Calendar">
+            <button
+                type="button"
+                role="radio"
+                aria-checked={!isNewCalendar}
+                className={`calendar-style-option${!isNewCalendar ? ' is-active' : ''}`}
+                onClick={() => choose(false)}
+                title="Julian calendar: readings follow the church calendar, 13 days behind the civil date"
+            >
+                {CALENDAR_NAMES.julian}
+            </button>
+            <button
+                type="button"
+                role="radio"
+                aria-checked={isNewCalendar}
+                className={`calendar-style-option${isNewCalendar ? ' is-active' : ''}`}
+                onClick={() => choose(true)}
+                title="New Calendar: readings follow the civil date"
+            >
+                {CALENDAR_NAMES.newCalendar}
+            </button>
         </div>
     );
 };
 
-export default NsToggle;
+export default CalendarStyleControl;

@@ -4,6 +4,7 @@ import { Navbar } from 'nextra-theme-docs'
 import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'
 import NsToggle from './datePicker-header'
+import CalendarSwitchNotice from './CalendarSwitchNotice'
 
 const CustomNavbar = () => {
   const router = useRouter()
@@ -27,6 +28,7 @@ const CustomNavbar = () => {
     >
       <NsToggle />
     </Navbar>
+    <CalendarSwitchNotice />
     </div>
   )
 }

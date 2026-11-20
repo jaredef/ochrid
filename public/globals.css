@@ -327,73 +327,191 @@ ol li::marker {
 .container {
     text-align: center;
     }
-    .toggle-switch {
-    position: relative;
-    width: 75px;
-    display: inline-block;
-    text-align: left;
-    top: 8px;
-    margin-bottom: .8rem;
-    }
-    .checkbox {
-    display: none;
-    }
-    .label {
-    display: block;
-    overflow: hidden;
+
+/* ---------- Calendar in use: Julian / New Calendar ---------- */
+
+/* Navbar control: the highlighted segment is always the calendar in use. */
+.calendar-style-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    height: 34px;
+    padding: 3px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.28);
+    flex-shrink: 0;
+}
+.calendar-style-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px;
+    height: 28px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
     cursor: pointer;
-    border: 0 solid #bbb;
-    border-radius: 20px;
-    }
-    .inner {
-    display: block;
-    width: 200%;
-    margin-left: -100%;
-    transition: margin 0.32s ease-in 0s;
-    }
-    .inner:before,
-    .inner:after {
-    float: left;
-    width: 50%;
-    height: 36px;
-    padding: 0;
-    line-height: 36px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.calendar-style-option:hover:not(.is-active) {
     color: #fff;
-    font-weight: bold;
-    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+.calendar-style-option.is-active {
+    background-color: #fff;
+    color: #9d0000;
+    font-weight: 600;
+}
+.calendar-style-option:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 1px;
+}
+@media (max-width: 768px) {
+    .calendar-style-option {
+        width: auto;
+        padding: 0 10px;
+        font-size: 12px;
     }
-    .inner:before {
-    content: "+13";
-    padding-left: 10px;
-    background-color: rgb(99, 0, 0);
+}
+
+/* Line under the date title: "Julian reading for Friday, November 20". */
+main .calendar-caption {
+    font-family: var(--font-pt-serif-caption);
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.6rem !important;
+    text-align: center;
+    margin-top: 0.25rem;
+}
+.calendar-caption-name {
+    font-style: normal;
+    font-weight: 600;
+    color: #9d0000;
+}
+:is(html[class~=dark]) .calendar-caption-name {
+    color: #f87171;
+}
+
+/* Calendar cells: the reading being shown is solid red, today is grey, feasts are gold.
+   Selectors are more specific than each calendar's own styles so all calendars agree. */
+/* react-datepicker keeps a keyboard-focus class on the previously selected day; it must not look like the reading. */
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--keyboard-selected:not(.react-datepicker__day--selected) {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #374151 !important;
+    font-weight: 500 !important;
+}
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--keyboard-selected.react-datepicker__day--highlighted:not(.react-datepicker__day--selected) {
+    background-color: #fef3c7 !important;
+    color: #92400e !important;
+}
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--keyboard-selected.react-datepicker__day--today:not(.react-datepicker__day--selected) {
+    background-color: #e9ebef !important;
+    color: #111827 !important;
+    font-weight: bold !important;
+}
+:is(html[class~=dark]) :is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--keyboard-selected:not(.react-datepicker__day--selected):not(.react-datepicker__day--today):not(.react-datepicker__day--highlighted) {
+    color: #e5e7eb !important;
+}
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--today {
+    background-color: #e9ebef !important;
+    border-color: transparent !important;
+    color: #111827 !important;
+    font-weight: bold !important;
+}
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--highlighted {
+    border-color: transparent !important;
+}
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--selected,
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--selected.react-datepicker__day--today,
+:is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--selected.react-datepicker__day--highlighted {
+    background-color: #9d0000 !important;
+    border-color: #9d0000 !important;
+    color: #fff !important;
+    font-weight: bold !important;
+}
+:is(html[class~=dark]) :is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--today {
+    background-color: #444 !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+:is(html[class~=dark]) :is(.index-calendar-wrapper, .calendar-wrapper, .mobile-calendar-sidebar, .mobile-calendar) .react-datepicker__day.react-datepicker__day--selected {
+    background-color: #9d0000 !important;
+    border-color: #9d0000 !important;
+    color: #fff !important;
+}
+
+/* Key under each calendar. */
+.calendar-key {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem 1.1rem;
+    padding-top: 0.85rem;
+    font-size: 13px;
+    line-height: 18px;
+}
+.nextra-toc .calendar-key {
+    gap: 0.35rem 0.8rem;
+    font-size: 12px;
+}
+.calendar-key-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+}
+.calendar-key-swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+.calendar-key-swatch.is-reading { background-color: #9d0000; }
+.calendar-key-swatch.is-today { background-color: #e9ebef; }
+.calendar-key-swatch.is-feast { background-color: #fef3c7; }
+:is(html[class~=dark]) .calendar-key-swatch.is-today { background-color: #444; }
+:is(html[class~=dark]) .calendar-key-swatch.is-feast { background-color: #333; }
+
+/* Notice shown when the site switches calendars on its own. */
+.calendar-switch-notice {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: calc(100vw - 32px);
+    padding: 12px 14px 12px 18px;
+    border-radius: 12px;
+    background-color: #171717;
+    color: #fafafa;
+    font-size: 14px;
+    line-height: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.calendar-switch-notice strong {
+    font-weight: 600;
+}
+.calendar-switch-notice button {
+    flex-shrink: 0;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.14);
     color: #fff;
-    }
-    .inner:after {
-    content: "N.S.";
-    padding-right: 10px;
-    background-color: rgb(88, 32, 32);
-    color: #fff;
-    text-align: right;
-    }
-    .switch {
-    display: block;
-    width: 25px;
-    margin: 5px;
-    background: rgb(255, 255, 255);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 40px;
-    border: 0 solid #bbb;
-    border-radius: 20px;
-    transition: all 0.3s ease-in 0s;
-    }
-    .checkbox:checked + .label .inner {
-    margin-left: 0;
-    }
-    .checkbox:checked + .label .switch {
-    right: 0px;
-    }
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.calendar-switch-notice button:hover {
+    background-color: rgba(255, 255, 255, 0.24);
+}
 .react-datepicker__header {
     background-color: white !important;
 }
