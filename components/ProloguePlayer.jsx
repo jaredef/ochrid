@@ -4,6 +4,9 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import audioFilesData from '../assets/prologue-audio-files.json';
 
+// Audio lives in the "ochrid" R2 bucket, served at audio.ochrid.org as /<month>/<day>.mp3.
+const AUDIO_BASE_URL = 'https://audio.ochrid.org';
+
 const ProloguePlayer = ({ overrideRoute = null }) => {
   const pathname = usePathname();
   const audioRef = useRef(null);
@@ -17,10 +20,10 @@ const ProloguePlayer = ({ overrideRoute = null }) => {
   }
 
   // Find the audio file that matches the effective route - memoized to prevent recalculation
-  const currentAudioFile = useMemo(() => 
-    audioFilesData.audioFiles.find(file => file.route === effectiveRoute),
-    [effectiveRoute]
-  );
+  const currentAudioFile = useMemo(() => {
+    const file = audioFilesData.audioFiles.find(file => file.route === effectiveRoute);
+    return file && { ...file, uri: `${AUDIO_BASE_URL}/${file.month}/${file.day}.mp3` };
+  }, [effectiveRoute]);
   
   // Audio player state
   const [isPlaying, setIsPlaying] = useState(false);
