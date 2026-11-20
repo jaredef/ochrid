@@ -13,7 +13,7 @@ import {
 
 // Navbar control showing which calendar the reader is following.
 // The highlighted segment is always the calendar in use, never the one you would switch to.
-const CalendarStyleControl = () => {
+const CalendarStyleControl = ({ className = '' }) => {
     const [isNewCalendar, setIsNewCalendar] = useState(false);
     const pathname = usePathname();
 
@@ -41,7 +41,7 @@ const CalendarStyleControl = () => {
     };
 
     return (
-        <div className="calendar-style-control" role="radiogroup" aria-label="Calendar">
+        <div className={`calendar-style-control ${className}`.trim()} role="radiogroup" aria-label="Calendar">
             <button
                 type="button"
                 role="radio"

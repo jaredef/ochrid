@@ -376,24 +376,6 @@ ol li::marker {
     }
 }
 
-/* Line under the date title: "Julian reading for Friday, November 20". */
-main .calendar-caption {
-    font-family: var(--font-pt-serif-caption);
-    font-style: italic;
-    font-size: 1.0625rem;
-    line-height: 1.6rem !important;
-    text-align: center;
-    margin-top: 0.25rem;
-}
-.calendar-caption-name {
-    font-style: normal;
-    font-weight: 600;
-    color: #9d0000;
-}
-:is(html[class~=dark]) .calendar-caption-name {
-    color: #f87171;
-}
-
 /* Calendar cells: the reading being shown is solid red, today is grey, feasts are gold.
    Selectors are more specific than each calendar's own styles so all calendars agree. */
 /* react-datepicker keeps a keyboard-focus class on the previously selected day; it must not look like the reading. */
@@ -737,4 +719,289 @@ footer {
 /* Target running head within DynamicMDXContent component (only renders on index) */
 div[style="margin-top: 2rem;"] .running-head-date {
     display: none;
+}
+/* ---------- Mobile header and menu (below 768px) ---------- */
+
+/* Our menu replaces Nextra's: hide its hamburger and panel, keep its open/close state. */
+.mobile-header-actions {
+    display: none;
+}
+@media (max-width: 767px) {
+    .nextra-hamburger,
+    .nextra-mobile-nav,
+    .calendar-style-control--navbar {
+        display: none !important;
+    }
+    .navbar-wrapper nav a[href="https://sebastianpress.org/"] {
+        display: none !important;
+    }
+    .mobile-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-left: auto;
+    }
+}
+
+.mobile-calendar-chip {
+    height: 30px;
+    padding: 0 12px;
+    margin-right: 2px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.mobile-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    color: oklch(0.372 0.044 257.287);
+}
+.mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    height: 56px;
+    padding: 0 8px 0 20px;
+    padding-top: env(safe-area-inset-top);
+    box-sizing: content-box;
+    background-color: #9d0000;
+}
+.mobile-menu-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px 20px calc(32px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.mobile-menu-today {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: oklch(0.551 0.027 264.364);
+}
+.mobile-menu-today-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.mobile-menu-today-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-merriweather-bold-italic);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
+    color: crimson;
+}
+.mobile-menu-today-label {
+    font-family: var(--font-pt-serif-caption);
+    font-size: 15px;
+    line-height: 22px;
+    color: oklch(0.372 0.044 257.287);
+}
+
+/* Calendar and theme choices in the menu: full-width segmented controls on a warm track. */
+.calendar-style-control.calendar-style-control--menu,
+.mobile-menu-segmented {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding: 3px;
+    gap: 2px;
+    border-radius: 999px;
+    background-color: #eceae8;
+}
+.calendar-style-control--menu .calendar-style-option,
+.mobile-menu-segment {
+    flex: 1;
+    width: auto;
+    height: 34px;
+    padding: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: oklch(0.372 0.044 257.287);
+    font-size: 15px;
+    font-weight: 500;
+}
+.calendar-style-control--menu .calendar-style-option.is-active,
+.mobile-menu-segment.is-active {
+    background-color: #fff;
+    color: #9d0000;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+.calendar-style-control--menu .calendar-style-option:hover:not(.is-active) {
+    background-color: transparent;
+    color: oklch(0.208 0.042 265.755);
+}
+.mobile-menu-segment {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.mobile-menu-segment.is-active {
+    color: oklch(0.208 0.042 265.755);
+}
+.mobile-menu-segment:last-child {
+    flex: 1.25;
+}
+
+/* Search: a filled field, no outline. */
+.mobile-menu-search input {
+    width: 100%;
+    height: 44px;
+    border: none !important;
+    border-radius: 12px !important;
+    background-color: #eceae8 !important;
+    font-size: 16px !important;
+    box-shadow: none !important;
+}
+
+/* Calendar card: shadow instead of an outline. */
+.mobile-menu .mobile-calendar-sidebar {
+    margin: 0 !important;
+    padding: 12px 8px 16px !important;
+    border: none !important;
+    border-radius: 16px !important;
+    background: #fff !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.07) !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker,
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__month-container {
+    width: 100% !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__header {
+    background-color: transparent !important;
+    border-bottom: none !important;
+}
+
+.mobile-menu-pages {
+    display: flex;
+    flex-direction: column;
+}
+.mobile-menu-pages a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    border-bottom: 1px solid #e7e5e3;
+    font-family: var(--font-pt-serif-caption);
+    font-size: 18px;
+    color: oklch(0.208 0.042 265.755);
+}
+.mobile-menu-pages a svg {
+    color: oklch(0.551 0.027 264.364);
+}
+
+/* Vespers (dark) */
+:is(html[class~=dark]) .mobile-menu {
+    background-color: #111;
+    color: #d1d5db;
+}
+:is(html[class~=dark]) .mobile-menu-today-label,
+:is(html[class~=dark]) .mobile-menu-pages a {
+    color: #e5e7eb;
+}
+:is(html[class~=dark]) .mobile-menu-pages a {
+    border-bottom-color: #2a2a2a;
+}
+:is(html[class~=dark]) .calendar-style-control.calendar-style-control--menu,
+:is(html[class~=dark]) .mobile-menu-segmented,
+:is(html[class~=dark]) .mobile-menu-search input {
+    background-color: #262626 !important;
+}
+:is(html[class~=dark]) .calendar-style-control--menu .calendar-style-option,
+:is(html[class~=dark]) .mobile-menu-segment {
+    color: #d1d5db;
+}
+:is(html[class~=dark]) .calendar-style-control--menu .calendar-style-option.is-active,
+:is(html[class~=dark]) .mobile-menu-segment.is-active {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+:is(html[class~=dark]) .mobile-menu .mobile-calendar-sidebar {
+    background: #1a1a1a !important;
+}
+
+@media (max-width: 767px) {
+    .calendar-switch-notice {
+        left: 12px;
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        transform: none;
+        max-width: none;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 10px 10px 14px;
+    }
+    .calendar-switch-notice button {
+        white-space: nowrap;
+    }
+}
+
+/* Mobile menu calendar: grid fills the card, key sits underneath, arrows without outlines. */
+.mobile-menu .mobile-calendar-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__day-names,
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__week {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    justify-items: center !important;
+    gap: 4px 0 !important;
+    margin: 0 0 4px 0 !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__day-name {
+    width: auto !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__day {
+    width: 40px !important;
+    height: 34px !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    line-height: 34px !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__current-month {
+    font-size: 19px !important;
+}
+.mobile-menu .mobile-calendar-sidebar .react-datepicker__navigation {
+    width: 40px !important;
+    height: 40px !important;
+    border: none !important;
+    background: transparent !important;
+}
+.mobile-menu .mobile-calendar-sidebar .calendar-key {
+    padding-top: 10px;
 }

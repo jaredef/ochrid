@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'
 import NsToggle from './datePicker-header'
 import CalendarSwitchNotice from './CalendarSwitchNotice'
+import { MobileHeaderActions, MobileMenuPanel } from './MobileMenu'
 
 const CustomNavbar = () => {
   const router = useRouter()
@@ -26,8 +27,10 @@ const CustomNavbar = () => {
         />
       }
     >
-      <NsToggle />
+      <NsToggle className="calendar-style-control--navbar" />
+      <MobileHeaderActions />
     </Navbar>
+    <MobileMenuPanel />
     <CalendarSwitchNotice />
     </div>
   )
